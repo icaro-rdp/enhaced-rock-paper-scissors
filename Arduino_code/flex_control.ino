@@ -1,17 +1,21 @@
 int round_played = 0;
 int a_wins = 0;
 int b_wins = 0;
-const int button_pin = 2;
+const int button_pin = 7;
 int button_state = 0;
 int last_button_state = 1;
 int round_total = 5;
 const int limit_value = 180;
+int hapticPin_a = 9;
+int hapticPin_b = 10;
 
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
   pinMode(button_pin, INPUT);
+  pinMode(hapticPin_a, OUTPUT);
+  pinMode(hapticPin_b, OUTPUT);
 }
 
 String check_move(int thumb, int forefinger, int middlefinger, 
@@ -75,38 +79,114 @@ String* checkFingers(){
   
 }
 
+void giveFeedback(int win){
+  if(win == 0){                 //draw
+    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(500);
+    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_b, LOW);
+    delay(200);
+    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(500);
+    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_b, LOW);
+  } else if (win == 1) {        //playerA wins
+    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_a, LOW);
+    delay(100);
+    digitalWrite(hapticPin_a, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_a, LOW);
+    delay(100);
+    digitalWrite(hapticPin_a, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_a, LOW);
+    delay(100);
+    digitalWrite(hapticPin_a, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_a, LOW);
+    delay(300);
+    digitalWrite(hapticPin_b, LOW);
+  } else if (win == 2) {        //playerB wins
+    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_b, LOW);
+    delay(100);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_b, LOW);
+    delay(100);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_b, LOW);
+    delay(100);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(100);
+    digitalWrite(hapticPin_b, LOW);
+    delay(300);
+    digitalWrite(hapticPin_a, LOW);
+  } else {                      //null
+    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(500);
+    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_b, LOW);
+    delay(200);
+    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_b, HIGH);
+    delay(500);
+    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_b, LOW);
+  }
+}
+
 String checkWinner(String* moves){
   Serial.println("PlayerA: " + moves[0] + "; PlayerB: " + moves[1]);
   if(moves[0] == "invalid" || moves[1] == "invalid"){
+    giveFeedback(3);
     return "N";
   } else if(moves[0] == "paper"){
     if(moves[1] == "scissors"){
       b_wins++;
+      giveFeedback(2);
       return "2";
     } else if(moves[1] == "rock"){
       a_wins++;
+      giveFeedback(1);
       return "1";
     } else {
+      giveFeedback(1);                //HERE TRY WITH 1 FLEX!!
       return "X";
     }
   } else if (moves[0] == "scissors"){
     if(moves[1] == "paper"){
       a_wins++;
+      giveFeedback(1);
       return "1";
     } else if(moves[1]=="rock"){
       b_wins++;
+      giveFeedback(2);
       return "2";
     } else {
+      giveFeedback(0);
       return "X";
     }
   } else {
     if(moves[1]=="paper"){
       b_wins++;
+      giveFeedback(2);
       return "2";
     } else if(moves[1]=="scissors"){
       a_wins++;
+      giveFeedback(1);
       return "1";
     } else {
+      giveFeedback(0);
       return "X";
     }
   }
