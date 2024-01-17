@@ -9,10 +9,8 @@ const int limit_value = 180;
 int hapticPin_a = 9;
 int hapticPin_b = 10;
 
-// the setup routine runs once when you press reset:
 void setup() {
-  // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(button_pin, INPUT);
   pinMode(hapticPin_a, OUTPUT);
   pinMode(hapticPin_b, OUTPUT);
@@ -55,7 +53,7 @@ String* checkFingers(){
   int ringfinger_b = analogRead(A7);      //to change
   int littlefinger_b = analogRead(A7);    //to change
   
-  Serial.println("T_a: " + String(thumb_a));
+  //Serial.print("T_a: " + String(thumb_a) + ";");
   //Serial.println("F_a: " + String(forefinger_a));
   //Serial.println("M_a: " + middlefinger_a);
   //Serial.println("R_a: " + ringfinger_a);
@@ -68,9 +66,6 @@ String* checkFingers(){
 
   String move_a = check_move(thumb_a, forefinger_a, middlefinger_a, ringfinger_a, littlefinger_a);
   String move_b = check_move(thumb_b, forefinger_b, middlefinger_b, ringfinger_b, littlefinger_b);
-
-  //Serial.println("Move_a: " + move_a);
-  //Serial.println("Move_b: " + move_b);
   static String moves[2];
   moves[0] = move_a;
   moves[1] = move_b;
@@ -80,7 +75,7 @@ String* checkFingers(){
 }
 
 void giveFeedback(int win){
-  if(win == 0){                 //draw
+  if(win == 0 or win == 3){                 //draw or null
     digitalWrite(hapticPin_a, HIGH);
     digitalWrite(hapticPin_b, HIGH);
     delay(500);
@@ -130,18 +125,6 @@ void giveFeedback(int win){
     digitalWrite(hapticPin_b, LOW);
     delay(300);
     digitalWrite(hapticPin_a, LOW);
-  } else {                      //null
-    digitalWrite(hapticPin_a, HIGH);
-    digitalWrite(hapticPin_b, HIGH);
-    delay(500);
-    digitalWrite(hapticPin_a, LOW);
-    digitalWrite(hapticPin_b, LOW);
-    delay(200);
-    digitalWrite(hapticPin_a, HIGH);
-    digitalWrite(hapticPin_b, HIGH);
-    delay(500);
-    digitalWrite(hapticPin_a, LOW);
-    digitalWrite(hapticPin_b, LOW);
   }
 }
 
@@ -160,7 +143,7 @@ String checkWinner(String* moves){
       giveFeedback(1);
       return "1";
     } else {
-      giveFeedback(1);                //HERE TRY WITH 1 FLEX!!
+      giveFeedback(0);                //HERE TRY WITH 1 FLEX!!
       return "X";
     }
   } else if (moves[0] == "scissors"){
@@ -192,6 +175,38 @@ String checkWinner(String* moves){
   }
 }
 
+//Data mapping: 0 = "rock"    1 = "paper"   2 = "scissors"    3 = "invalid"   
+void sendDataPd(String* moves){
+  if(moves[0] == "rock"){
+    Serial.print("d0, ");
+    Serial.println(0);  
+  } else if(moves[0] == "paper"){
+    Serial.print("d0, ");
+    Serial.println(1);
+  } else if(moves[0] == "scissors"){
+    Serial.print("d0, ");
+    Serial.println(2);
+  } else {
+    Serial.print("d0, ");
+    Serial.println(3);
+  }
+
+  if(moves[1] == "rock"){
+    Serial.print("d1, ");
+    Serial.println(0);  
+  } else if(moves[1] == "paper"){
+    Serial.print("d1, ");
+    Serial.println(1);
+  } else if(moves[1] == "scissors"){
+    Serial.print("d1, ");
+    Serial.println(2);
+  } else {
+    Serial.print("d1, ");
+    Serial.println(3);
+  }
+  
+}
+
 String checkFinalWinner(){
   if(a_wins > b_wins){
     return "PlayerA wins!";
@@ -213,6 +228,7 @@ void loop() {
   }
 
   String winner = checkWinner(moves);
+  sendDataPd(moves);
   round_played ++;
   Serial.println("Round " + String(round_played) + " result: " + winner);
   Serial.println("Partial result: PlayerA " + String(a_wins) + " - PlayerB " + String(b_wins));
