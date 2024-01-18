@@ -1,4 +1,4 @@
-#N canvas 693 133 980 627 10;
+#N canvas 886 151 980 627 10;
 #X obj 17 16 loadbang;
 #X obj 17 43 delay 1000;
 #X msg 17 146 \; pd dsp \$1;
@@ -21,6 +21,9 @@
 #X obj 478 172 tgl 55 0 empty empty Players\ ready 63 26 2 16 #ffc7c6 #b40000 #ff0400 0 1;
 #X obj 477 254 _countdown;
 #X obj 476 299 tgl 55 0 empty empty Game\ played 63 26 2 16 #ffc7c6 #b40000 #ff0400 0 1;
+#X obj 424 91 bng 18 250 50 0 empty empty empty 8 -8 0 10 #dfdfdf #000000 #000000;
+#X obj 476 385 _receive_signs;
+#X obj 474 425 tgl 55 0 empty empty Moves\ announced 63 26 2 16 #ffc7c6 #b40000 #ff0400 0 1;
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 3 0 2 0;
@@ -39,3 +42,6 @@
 #X connect 18 0 16 0;
 #X connect 19 0 20 0;
 #X connect 20 0 21 0;
+#X connect 21 0 23 0;
+#X connect 22 0 18 0;
+#X connect 23 0 24 0;
