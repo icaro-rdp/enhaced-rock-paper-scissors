@@ -117,7 +117,7 @@ void handle_received_message(char *received_message) {
 
   char *command = all_tokens[0]; 
   char *value = all_tokens[1];
-  if (strcmp(command,"players_ready") == 2) {
+  if (strcmp(command,"players_ready") == 0 && strcmp(value,"2") == 0) {
     /*
     Serial.print("activating message 1: ");
     Serial.print(command);
