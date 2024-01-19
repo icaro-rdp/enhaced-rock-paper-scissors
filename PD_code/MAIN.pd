@@ -27,7 +27,8 @@
 #X obj 474 494 _declare_winner;
 #X obj 649 287 s to_Arduino;
 #X obj 649 264 _format_serial_messages;
-#X msg 649 242 players_ready \$2;
+#X msg 649 235 players_ready \$1;
+#X msg 652 209 2;
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 3 0 2 0;
@@ -45,7 +46,7 @@
 #X connect 17 0 18 0;
 #X connect 18 0 16 0;
 #X connect 19 0 20 0;
-#X connect 19 0 28 0;
+#X connect 19 0 29 0;
 #X connect 20 0 21 0;
 #X connect 21 0 23 0;
 #X connect 22 0 18 0;
@@ -55,3 +56,4 @@
 #X connect 25 0 22 0;
 #X connect 27 0 26 0;
 #X connect 28 0 27 0;
+#X connect 29 0 28 0;

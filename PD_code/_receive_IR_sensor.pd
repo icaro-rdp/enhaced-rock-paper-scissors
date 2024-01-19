@@ -1,4 +1,4 @@
-#N canvas 1917 9 1920 944 10;
+#N canvas 348 22 1920 944 10;
 #X msg 40 228 close;
 #X obj 23 -156 cnv 15 440 60 empty empty empty 20 12 0 14 #c0d828 #404040 0;
 #X msg 29 201 devices;
@@ -161,8 +161,8 @@
 #X obj 1046 314 r d0;
 #X obj 1280 319 r d1;
 #X obj 2261 306 r d2;
-#X obj 1058 379 s _d0;
-#X obj 1295 384 s _d1;
+#X obj 1061 412 s _d0;
+#X obj 1287 418 s _d1;
 #X obj 2277 371 s _d2;
 #X text 1061 272 Data from digital sensors;
 #X text 1043 -151 Data from analog sensors;
@@ -192,6 +192,14 @@
 #X obj 193 186 loadbang;
 #X obj 1089 -10 cyclone/scale 0 500 0 5 1;
 #X obj 1324 -6 cyclone/scale 0 500 0 5 1;
+#X floatatom 1061 386 5 0 0 0 - - - 0;
+#X obj 183 247 r to_Arduino;
+#X floatatom 1287 384 5 0 0 0 - - - 0;
+#X obj 1184 491 tgl 30 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 1127 439 r console;
+#X obj 1127 467 unpack s s;
+#X obj 1117 539 print;
+#X msg 1115 501 \$1;
 #X connect 0 0 72 0;
 #X connect 2 0 72 0;
 #X connect 3 0 4 0;
@@ -219,9 +227,9 @@
 #X connect 42 0 33 0;
 #X connect 44 0 38 0;
 #X connect 47 1 48 0;
-#X connect 47 1 56 0;
+#X connect 47 1 87 0;
 #X connect 49 1 50 0;
-#X connect 49 1 57 0;
+#X connect 49 1 89 0;
 #X connect 51 1 52 0;
 #X connect 51 1 58 0;
 #X connect 53 0 47 0;
@@ -245,3 +253,10 @@
 #X connect 84 0 73 0;
 #X connect 85 0 34 0;
 #X connect 86 0 78 0;
+#X connect 87 0 56 0;
+#X connect 88 0 72 0;
+#X connect 89 0 57 0;
+#X connect 91 0 92 0;
+#X connect 92 1 90 0;
+#X connect 92 1 94 0;
+#X connect 94 0 93 0;
