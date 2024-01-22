@@ -133,9 +133,6 @@ void handle_received_message(char *received_message) {
 
   if (strcmp(command,"mov_rec") == 0 && strcmp(value,"1") == 0) {   
     moves_received = true;
-  } else if (strcmp(command,"mov_rec") == 0 && strcmp(value,"2") == 0) {
-    moves_received = true;
-    valid_round = false;
   }
 
   if (strcmp(command,"win_ann") == 0 && strcmp(value,"1") == 0) {   
@@ -203,7 +200,7 @@ void checkFingers(int* moves){
   // moves[0] = move_a;
   // moves[1] = move_b;
 
-  moves[0] = 0;
+  moves[0] = 1;
   moves[1] = 2;
 }
 
@@ -414,25 +411,20 @@ void loop() {
   Serial.println("moves_rec");
 
   /** Determination of the winner for each round with partial results **********************************************/
-  if(valid_round){
-    int winner = checkWinner(moves[0], moves[1]); // if 1, player1 win, if 2, player2 win, if 3, even
+  int winner = checkWinner(moves[0], moves[1]); // if 0, invalid round, if 1, player1 win, if 2, player2 win, if 3, even
+  if (winner != 0) {
     round_played ++;
     valid_round_played ++;
-    Serial.print("w0, ");
-    Serial.println(winner);  
-    /** Waiting for announciation of winner in PD *********************************************************************/
-    while(winner_announced == false){
-      receive_message();
-    }
     //Serial.println("Round " + String(round_played) + " result: " + winner);
     //Serial.println("Partial result: PlayerA " + String(a_wins) + " - PlayerB " + String(b_wins));
   } else {
     round_played ++;
-    Serial.print("w0, ");
-    Serial.println("invalid");
-    while(invalid_announced == false){
-      receive_message();
-    }
+  }
+  Serial.print("w0, ");
+  Serial.println(winner);  
+  /** Waiting for announciation of winner in PD *********************************************************************/
+  while(winner_announced == false){
+    receive_message();
   }
   
 
