@@ -1,8 +1,10 @@
 # Questions
 
-1. Come collegare anche il websocket e PD alla stessa porta seriale?
+1. Come collegare anche il websocket JS e PD alla stessa porta seriale?
 
 2. I flex sensors vengono considerati "chiusi" per le seguenti dita al di sotto di 200/190.
+
+3. Possiamo usare teensy per usare le varie porte seriali?
 
 # Research
 
