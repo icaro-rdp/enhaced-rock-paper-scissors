@@ -44,6 +44,7 @@ uint16_t analog_input1_threshold = 75;
 /* Const and variables for the script ******************************************************************************/
 
 int round_played = 0;
+int valid_round_played = 0;
 int a_wins = 0;
 int b_wins = 0;
 const int button_pin = 7;
@@ -58,6 +59,8 @@ bool players_ready = false;
 bool countdown_finished = false;
 bool moves_received = false;
 bool winner_announced = false;
+bool valid_round = true;
+bool invalid_announced = false;
 int moves[2];
 
 /** Setup function *************************************************************************************/
@@ -130,11 +133,18 @@ void handle_received_message(char *received_message) {
 
   if (strcmp(command,"mov_rec") == 0 && strcmp(value,"1") == 0) {   
     moves_received = true;
-  } 
+  } else if (strcmp(command,"mov_rec") == 0 && strcmp(value,"2") == 0) {
+    moves_received = true;
+    valid_round = false;
+  }
 
   if (strcmp(command,"win_ann") == 0 && strcmp(value,"1") == 0) {   
     winner_announced = true;
   } 
+
+  if (strcmp(command,"inv_ann") == 0 && strcmp(value,"1") == 0) {   
+    invalid_announced = true;
+  }
 } 
 
 /** Functions for mapping fingers with moves ***********************************************************************
@@ -298,58 +308,58 @@ void giveFeedback(int win){
 
 void sendMovesPd(int move_a, int move_b){
   Serial.print("d0, ");
-  Serial.println(String(move_a));
+  Serial.println(move_a);
 
   Serial.print("d1, ");
-  Serial.println(String(move_b));
+  Serial.println(move_b);
 }
 
 /** Functions to determine the winner of a round and of a match ***************************************************
     Data mapping: 0 = "rock"    1 = "paper"   2 = "scissors"    3 = "invalid"                                     */
 
-String checkWinner(int move_a, int move_b){
+int checkWinner(int move_a, int move_b){
   //Serial.println("PlayerA: " + move_a + "; PlayerB: " + move_b);
   if(move_a == 3 || move_b == 3){   //at least one invalid move
     giveFeedback(3);
-    return "N";
+    return 0;
   } else if(move_a == 1){           
     if(move_b == 2){                // paper - scissors
       b_wins++;
       giveFeedback(2);
-      return "2";
+      return 2;
     } else if(move_b == 0){        // paper - rock
       a_wins++;
       giveFeedback(1);
-      return "1";
+      return 1;
     } else {
       giveFeedback(0);              // paper - paper
-      return "X";
+      return 3;
     }
   } else if (move_a == 2){
     if(move_b == 1){                // scissors - paper
       a_wins++;
       giveFeedback(1);
-      return "1";
+      return 1;
     } else if(move_b == 0){         // scissors - rock
       b_wins++;
       giveFeedback(2);
-      return "2";
+      return 2;
     } else {                        // scissors - scissors
       giveFeedback(0);
-      return "X";
+      return 3;
     }
   } else {
     if(move_b == 1){                // rock - paper
       b_wins++;
       giveFeedback(2);
-      return "2";
+      return 2;
     } else if(move_b == 2){         // rock - scissors
       a_wins++;
       giveFeedback(1);
-      return "1";
+      return 1;
     } else {                        // rock - rock
       giveFeedback(0);
-      return "X";
+      return 3;
     }
   }
 }
@@ -392,10 +402,11 @@ void loop() {
     delay(500);
   }
   Serial.print("console, ");
-  Serial.print("read_end");
+  Serial.println("read_end");
 
   /** Waiting for moves received by PD ****************************************************************************/
   sendMovesPd(moves[0], moves[1]);
+  
   while(moves_received == false){
     receive_message(); 
   }
@@ -403,17 +414,27 @@ void loop() {
   Serial.println("moves_rec");
 
   /** Determination of the winner for each round with partial results **********************************************/
-  String winner = checkWinner(moves[0], moves[1]);
-  round_played ++;
-  Serial.print("console, ");
-  Serial.println(winner);
-
-  /** Waiting for announciation of winner in PD *********************************************************************/
-  while(winner_announced == false){
-    receive_message();
+  if(valid_round){
+    int winner = checkWinner(moves[0], moves[1]); // if 1, player1 win, if 2, player2 win, if 3, even
+    round_played ++;
+    valid_round_played ++;
+    Serial.print("w0, ");
+    Serial.println(winner);  
+    /** Waiting for announciation of winner in PD *********************************************************************/
+    while(winner_announced == false){
+      receive_message();
+    }
+    //Serial.println("Round " + String(round_played) + " result: " + winner);
+    //Serial.println("Partial result: PlayerA " + String(a_wins) + " - PlayerB " + String(b_wins));
+  } else {
+    round_played ++;
+    Serial.print("w0, ");
+    Serial.println("invalid");
+    while(invalid_announced == false){
+      receive_message();
+    }
   }
-  //Serial.println("Round " + String(round_played) + " result: " + winner);
-  //Serial.println("Partial result: PlayerA " + String(a_wins) + " - PlayerB " + String(b_wins));
+  
 
   /** Round advancement or final winner determination ****************************************************/
   while(true){
@@ -421,10 +442,12 @@ void loop() {
     countdown_finished = false;
     moves_received = false;
     winner_announced = false;
-    if(round_played < round_total){
-      String next_round = String(round_played + 1);
+    valid_round = true;
+    invalid_announced = false;
+    if(valid_round_played < round_total){
+      String next_round = String(valid_round_played + 1);
       Serial.print("console, ");
-      Serial.println("round_" + next_round);
+      Serial.println("nxt_round");
       break;  
     } else {
       String final_winner = checkFinalWinner();
