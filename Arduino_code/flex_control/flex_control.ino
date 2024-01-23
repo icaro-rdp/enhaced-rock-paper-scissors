@@ -20,8 +20,8 @@ boolean new_message_received = false;
 
 #define ANALOG_PERIOD_MICROSECS 1000
 static uint32_t analog_last_read = 0;
-uint16_t analog_input0_pin = 0;
-uint16_t analog_input1_pin = 1;
+uint16_t analog_input0_pin = 19;
+uint16_t analog_input1_pin = 20;
 uint16_t analog_input0 = 0;
 uint16_t analog_input1 = 0;
 uint16_t analog_input0_lp_filtered = 0;
@@ -51,9 +51,9 @@ const int button_pin = 7;
 int button_state = 0;
 int last_button_state = 1;
 int round_total = 5;
-const int limit_value = 180;
-int hapticPin_a = 9;
-int hapticPin_b = 10;
+const int limit_value = 270;
+int hapticPin_a = 2;
+int hapticPin_b = 3;
 const int flexSensor_reading_time = 3000;
 bool players_ready = false;
 bool countdown_finished = false;
@@ -123,23 +123,23 @@ void handle_received_message(char *received_message) {
   char *command = all_tokens[0]; 
   char *value = all_tokens[1];
   
-  if (strcmp(command,"players_ready") == 0 && strcmp(value,"2") == 0) {   
+  if (strcmp(command,"players_ready") == 0) {   
     players_ready = true;
   }  
 
-  if (strcmp(command,"count_end") == 0 && strcmp(value,"0") == 0) {
+  if (strcmp(command,"count_end") == 0) {
     countdown_finished = true;
   }  
 
-  if (strcmp(command,"mov_rec") == 0 && strcmp(value,"1") == 0) {   
+  if (strcmp(command,"mov_rec") == 0) {   
     moves_received = true;
   }
 
-  if (strcmp(command,"win_ann") == 0 && strcmp(value,"1") == 0) {   
+  if (strcmp(command,"win_ann") == 0) {   
     winner_announced = true;
   } 
 
-  if (strcmp(command,"inv_ann") == 0 && strcmp(value,"1") == 0) {   
+  if (strcmp(command,"inv_ann") == 0) {   
     invalid_announced = true;
   }
 } 
@@ -173,35 +173,31 @@ int check_move(int thumb, int forefinger, int middlefinger,
 }
 
 void checkFingers(int* moves){
-  int thumb_a = analogRead(A0);
-  int forefinger_a = analogRead(A1);
-  int middlefinger_a = analogRead(A2);
-  int ringfinger_a = analogRead(A3);
-  int littlefinger_a = analogRead(A4);
+  int thumb_a = analogRead(14);
+  int forefinger_a = analogRead(15);
+  int middlefinger_a = analogRead(16);
+  int ringfinger_a = analogRead(17);
+  int littlefinger_a = analogRead(18);
   int thumb_b = analogRead(A5);
   int forefinger_b = analogRead(A6);
   int middlefinger_b = analogRead(A7);
   int ringfinger_b = analogRead(A7);      //to change
   int littlefinger_b = analogRead(A7);    //to change
   
-  //Serial.print("T_a: " + String(thumb_a) + ";");
-  //Serial.println("F_a: " + String(forefinger_a));
-  //Serial.println("M_a: " + middlefinger_a);
-  //Serial.println("R_a: " + ringfinger_a);
-  //Serial.println("L_a: " + littlefinger_a);
-  //Serial.println("T_a: " + String(thumb_b));
-  //Serial.println("F_b: " + forefinger_b);
-  //Serial.println("M_b: " + middlefinger_b);
-  //Serial.println("R_b: " + ringfinger_b);
-  //Serial.println("L_b: " + littlefinger_b);
+  Serial.print("fingers, ");
+  Serial.println(middlefinger_a);
+  //Serial.println("M_a: " + String(middlefinger_a) + ";");
+  //Serial.println("L_a: " + String(littlefinger_a) + ";");
+  //Serial.println("I_a: " + String(forefinger_a) + ";");
+ 
 
   int move_a = check_move(thumb_a, forefinger_a, middlefinger_a, ringfinger_a, littlefinger_a);
   int move_b = check_move(thumb_b, forefinger_b, middlefinger_b, ringfinger_b, littlefinger_b);
-  // moves[0] = move_a;
+  moves[0] = move_a;
   // moves[1] = move_b;
 
-  moves[0] = 1;
-  moves[1] = 2;
+  // moves[0] = 1;
+  moves[1] = 1;
 }
 
 /** Functions for send IR values to PD ********************************************************************/
@@ -374,8 +370,9 @@ String checkFinalWinner(){
 /** Loop function ****************************************************************************************/
 
 void loop() {  
-  
+
   /** Waiting for players ready ****************************************************************************/
+   
   while(players_ready == false){
     sendIRPd();
     receive_message(); 
@@ -383,13 +380,15 @@ void loop() {
   Serial.print("console, ");
   Serial.println("players_ready");
 
+  
   /** Waiting for countdown finished ****************************************************************************/
   while(countdown_finished == false){
     receive_message(); 
   }
   Serial.print("console, ");
   Serial.println("count_finish");
-    
+  
+
   /** Flex sensors reading with move detection ********************************************************************/
   unsigned long startMillis = millis();
   while (millis() - startMillis < flexSensor_reading_time) { 
@@ -400,6 +399,8 @@ void loop() {
   }
   Serial.print("console, ");
   Serial.println("read_end");
+
+  
 
   /** Waiting for moves received by PD ****************************************************************************/
   sendMovesPd(moves[0], moves[1]);

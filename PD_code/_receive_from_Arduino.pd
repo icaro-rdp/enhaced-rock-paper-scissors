@@ -194,7 +194,12 @@
 #X obj 586 460 print;
 #X msg 586 432 \$1;
 #X msg 664 -103 7;
-#X obj 529 408 unpack s f;
+#X obj 529 408 unpack s s;
+#X obj 1151 254 cnv 16 200 170 empty empty Fingers\ debug\  20 12 0 14 #ffe3c6 #404040 0;
+#X obj 1244 363 print;
+#X msg 1244 335 \$1;
+#X obj 1187 283 r fingers;
+#X obj 1187 311 unpack s f;
 #X connect 0 0 59 0;
 #X connect 2 0 59 0;
 #X connect 3 0 4 0;
@@ -248,3 +253,6 @@
 #X connect 87 0 86 0;
 #X connect 88 0 3 0;
 #X connect 89 1 87 0;
+#X connect 92 0 91 0;
+#X connect 93 0 94 0;
+#X connect 94 1 92 0;
