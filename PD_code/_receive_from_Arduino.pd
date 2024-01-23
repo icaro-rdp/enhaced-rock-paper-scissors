@@ -191,10 +191,10 @@
 #X text 812 427 Winner;
 #X obj 493 351 cnv 16 200 170 empty empty Console\ messages 20 12 0 14 #bbbbbb #404040 0;
 #X obj 529 380 r console;
-#X obj 529 408 unpack s s;
 #X obj 586 460 print;
 #X msg 586 432 \$1;
 #X msg 664 -103 7;
+#X obj 529 408 unpack s f;
 #X connect 0 0 59 0;
 #X connect 2 0 59 0;
 #X connect 3 0 4 0;
@@ -235,7 +235,7 @@
 #X connect 65 0 71 2;
 #X connect 66 0 71 0;
 #X connect 67 0 62 0;
-#X connect 69 0 89 0;
+#X connect 69 0 88 0;
 #X connect 70 0 34 0;
 #X connect 71 0 63 0;
 #X connect 72 0 47 0;
@@ -244,7 +244,7 @@
 #X connect 75 1 76 0;
 #X connect 76 0 78 0;
 #X connect 77 0 75 0;
-#X connect 85 0 86 0;
-#X connect 86 1 88 0;
-#X connect 88 0 87 0;
-#X connect 89 0 3 0;
+#X connect 85 0 89 0;
+#X connect 87 0 86 0;
+#X connect 88 0 3 0;
+#X connect 89 1 87 0;
