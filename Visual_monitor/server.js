@@ -20,6 +20,8 @@ server.on("listening", () => {
 });
 
 function handleMovements(moves, message) {
+  console.log(typeof message);
+  return;
   const splitted = message.split("-");
   const player = splitted[0];
 
