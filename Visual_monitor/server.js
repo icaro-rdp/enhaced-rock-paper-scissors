@@ -8,10 +8,10 @@ server.on("error", (err) => {
 
 server.on("message", (msg) => {
   const moves = [undefined, undefined];
-  console.log(`server got: ${msg}`);
+  //console.log(`server got: ${msg}`);
   // qui chiamo handleMovements e poi passo i risultati
   handleMovements(moves, msg);
-  if (moves.every((el) => el !== undefined)) console.log(moves);
+  console.log(moves);
 });
 
 server.on("listening", () => {
