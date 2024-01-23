@@ -19,9 +19,8 @@ server.on("listening", () => {
   console.log(`server listening ${address.address}:${address.port}`);
 });
 
-function handleMovements(moves, message) {
-  console.log(typeof message);
-  return;
+function handleMovements(moves, buffer) {
+  const message = buffer.toString();
   const splitted = message.split("-");
   const player = splitted[0];
 
