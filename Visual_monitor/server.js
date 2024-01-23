@@ -6,21 +6,30 @@ server.on("error", (err) => {
   server.close();
 });
 
-server.on("message", (msg, rinfo) => {
-  console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+server.on("message", (msg) => {
+  const moves = [];
+  console.log(`server got: ${msg}`);
+  // qui chiamo handleMovements e poi passo i risultati
+  handleMovements(moves, msg);
+  console.log(moves);
 });
 
 server.on("listening", () => {
   const address = server.address();
   console.log(`server listening ${address.address}:${address.port}`);
-  // qui chiamo handleMovements e poi passo i risultati
 });
 
-const handleMovements(message:string){
-  // qui arriva il messaggio delle mani singole
-  // il messaggio che arriva è del tipo : p1-0 / p2-3
-  // ritorno un array con le due mosse fatte da p1 e p2
-  // [0,3]
+function handleMovements(moves, message) {
+  const splitted = message.split("-");
+  const player = splitted[0];
+
+  if (typeof message !== "string") return [3, 3];
+  if (player === "p1") {
+    moves.push(splitted[0]);
+  } else {
+    moves.push(splitted[1]);
+  }
+  return moves;
 }
 
 // Listening on a port (e.g., 41234)
