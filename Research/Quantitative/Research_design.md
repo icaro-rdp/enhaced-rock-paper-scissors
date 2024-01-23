@@ -83,7 +83,23 @@ Certo, ci sono vari software e calcolatori online che possono aiutarti a determi
 ### 7. Report dei Risultati
 
 - Documentate tutte le fasi dell'esperimento, inclusi i metodi, i risultati, e le analisi.
-- Discutete i risultati in relazione alle ipotesi e alle ricerche precedenti.
+
+- Provide details about
+
+  - how you recruited participants
+  - who are the participants
+  - the participants’ demographics (age, gender, etc.)
+
+- Then present the results and reflections on them
+
+- When presenting your finding, only make claims that
+  your data can support
+
+- Graphical representations are very important for a
+  presentation
+
+- There are various techniques to visualize quantitative
+  data.
 
 ### 8. Limitazioni e Considerazioni Future
 
