@@ -1,5 +1,13 @@
 # Questionnaire Design
 
+# Consent Form
+
+Thank you for considering taking part in this research, which consists in trying the provided system and answering to a few questions on this online form. By taking part to this study you agree on the following
+
+1. I understand that if I decide at any other time during the research that I no longer wish to participate in this study, I can interrupt it and I can notify the researchers involved and be withdrawn from it immediately (icaro.redepaolini@studenti.unitn.it)
+
+2) I consent to the processing of my personal information for the purposes of this research study. I understand that such information will be treated as strictly confidential and handled in accordance with the provisions of The General Data Protection Regulation (EU) 2016/679 (GDPR).
+
 SUS: System Usability Scale
 
 1. I think that I would like to use this system frequently.
