@@ -56,6 +56,14 @@
 #X obj 626 432 t b b;
 #X msg 653 462 open ./wav_files/invalid.wav;
 #X msg 245 465 open ./wav_files/invalid.wav;
+#X msg 876 134 disconnect;
+#X obj 797 158 netsend -u;
+#X text 879 160 UDP \, FUDI;
+#X obj 797 187 tgl 19 0 empty empty empty 0 -10 0 12 #dfdfdf #000000 #000000 0 1;
+#X msg 797 111 connect localhost 41234;
+#X obj 797 87 loadbang;
+#X msg 583 98 send p1-\$1;
+#X msg 678 89 send p2-\$1;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 1 1 3 0;
@@ -87,7 +95,9 @@
 #X connect 25 0 28 0;
 #X connect 26 0 27 0;
 #X connect 27 0 10 0;
+#X connect 27 0 64 0;
 #X connect 28 0 6 0;
+#X connect 28 0 63 0;
 #X connect 30 0 32 0;
 #X connect 31 0 0 0;
 #X connect 31 1 32 0;
@@ -120,3 +130,9 @@
 #X connect 54 1 55 0;
 #X connect 55 0 8 0;
 #X connect 56 0 1 0;
+#X connect 57 0 58 0;
+#X connect 58 0 60 0;
+#X connect 61 0 58 0;
+#X connect 62 0 61 0;
+#X connect 63 0 58 0;
+#X connect 64 0 58 0;
