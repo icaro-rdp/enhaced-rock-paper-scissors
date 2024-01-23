@@ -17,4 +17,7 @@ SUS: System Usability Scale
 10. I needed to learn a lot of things before I could get going with
     this system. 19
 
--
+# SUS calculation
+
+https://github.com/lucaturchet/HCI_utils/tree/master
+/SUS
