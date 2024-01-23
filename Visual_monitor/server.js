@@ -7,11 +7,11 @@ server.on("error", (err) => {
 });
 
 server.on("message", (msg) => {
-  const moves = [];
+  const moves = [undefined, undefined];
   console.log(`server got: ${msg}`);
   // qui chiamo handleMovements e poi passo i risultati
   handleMovements(moves, msg);
-  console.log(moves);
+  if (moves.every((el) => el !== undefined)) console.log(moves);
 });
 
 server.on("listening", () => {
@@ -25,9 +25,9 @@ function handleMovements(moves, message) {
 
   if (typeof message !== "string") return [3, 3];
   if (player === "p1") {
-    moves.push(splitted[0]);
+    moves[0] = parseInt(splitted[1]);
   } else {
-    moves.push(splitted[1]);
+    moves[1] = parseInt(splitted[1]);
   }
   return moves;
 }
