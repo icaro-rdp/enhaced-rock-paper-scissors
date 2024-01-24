@@ -6,8 +6,8 @@ server.on("error", (err) => {
   server.close();
 });
 
+const moves = [undefined, undefined];
 server.on("message", (msg) => {
-  const moves = [undefined, undefined];
   //console.log(`server got: ${msg}`);
   // qui chiamo handleMovements e poi passo i risultati
   handleMovements(moves, msg);
