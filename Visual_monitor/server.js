@@ -1,22 +1,31 @@
 import dgram from "dgram";
-const server = dgram.createSocket("udp4");
 
-server.on("error", (err) => {
-  console.log(`server error:\n${err.stack}`);
-  server.close();
+const UDP_server = dgram.createSocket("udp4");
+// Listening on a port (e.g., 41234)
+UDP_server.bind(41234);
+
+import express from "express";
+const express_server = express();
+
+UDP_server.on("error", (err) => {
+  console.log(`UDP_server error:\n${err.stack}`);
+  UDP_server.close();
 });
 
 const moves = [undefined, undefined];
-server.on("message", (msg) => {
-  //console.log(`server got: ${msg}`);
+UDP_server.on("message", (msg) => {
   // qui chiamo handleMovements e poi passo i risultati
   handleMovements(moves, msg);
   console.log(moves);
 });
 
-server.on("listening", () => {
-  const address = server.address();
-  console.log(`server listening ${address.address}:${address.port}`);
+UDP_server.on("listening", () => {
+  const address = UDP_server.address();
+  console.log(`UDP_server listening ${address.address}:${address.port}`);
+});
+
+express_server.listen(3000, () => {
+  console.log("express_server running on port 3000");
 });
 
 function handleMovements(moves, buffer) {
@@ -32,6 +41,3 @@ function handleMovements(moves, buffer) {
   }
   return moves;
 }
-
-// Listening on a port (e.g., 41234)
-server.bind(41234);
