@@ -10,10 +10,11 @@ const moves = [undefined, undefined];
 // gestione dei messaggi che arrivano da PD
 UDP_server.on("message", (msg) => {
   handleMessages(moves, msg);
+
   if (moves[0] !== undefined && moves[1] !== undefined) {
+    console.log("write on excel file", declareWinner(moves));
     moves[0] = undefined;
     moves[1] = undefined;
-    console.log("write on excel file", declareWinner(moves));
   }
 });
 
