@@ -9,8 +9,12 @@ UDP_server.bind(41234);
 const moves = [undefined, undefined];
 // gestione dei messaggi che arrivano da PD
 UDP_server.on("message", (msg) => {
-  bufferToMoves(moves, msg);
-  console.log(moves);
+  handleMessages(moves, msg);
+  if (moves[0] !== undefined && moves[1] !== undefined) {
+    moves[0] = undefined;
+    moves[1] = undefined;
+    console.log("write on excel file", declareWinner(moves));
+  }
 });
 
 UDP_server.on("listening", () => {
@@ -35,7 +39,7 @@ express_server.get("/last-moves", (req, res) => {
   res.json({ move: moves });
 });
 
-function bufferToMoves(moves, buffer) {
+function handleMessages(moves, buffer) {
   const message = buffer.toString();
   const splitted = message.split("-");
   const player = splitted[0];
@@ -47,4 +51,18 @@ function bufferToMoves(moves, buffer) {
     moves[1] = parseInt(splitted[1]);
   }
   return moves;
+}
+
+function declareWinner(moves) {
+  if (moves[0] === moves[1]) {
+    return "Draw";
+  } else if (moves[0] === 1 && moves[1] === 3) {
+    return "Player 1 wins";
+  } else if (moves[0] === 2 && moves[1] === 1) {
+    return "Player 1 wins";
+  } else if (moves[0] === 3 && moves[1] === 2) {
+    return "Player 1 wins";
+  } else {
+    return "Player 2 wins";
+  }
 }
