@@ -1,7 +1,20 @@
 import dgram from "dgram";
 import cors from "cors";
 import express from "express";
+import { createObjectCsvWriter as createCsvWriter } from "csv-writer";
 
+// CSV writer
+
+const csvWriter = createCsvWriter({
+  path: "games.csv",
+  header: [
+    { id: "timestamp", title: "TIMESTAMP" },
+    { id: "round", title: "ROUND" },
+    { id: "move1", title: "P1-MOVE" },
+    { id: "move2", title: "P2-MOVE" },
+    { id: "winner", title: "WINNER" },
+  ],
+});
 // Server for PD communication
 const UDP_server = dgram.createSocket("udp4");
 UDP_server.bind(41234);
@@ -17,9 +30,19 @@ UDP_server.on("message", (msg) => {
   counterMessages++;
   if (moves[0] !== undefined && moves[1] !== undefined) {
     if (counterMessages === 2) {
-      console.log(
-        `Game ${counterMessages} - ${moves} - ${declareWinner(moves)} wins`
-      );
+      csvWriter
+        .writeRecords([
+          {
+            timestamp: new Date().toISOString(),
+            round: counterMessages,
+            move1: moves[0],
+            move2: moves[1],
+            winner: declareWinner(moves),
+          },
+        ])
+        .then(() => {
+          console.log("...Writing on CSV done");
+        });
       counterMessages = 0;
     }
   }
