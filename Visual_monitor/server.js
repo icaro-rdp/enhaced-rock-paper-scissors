@@ -1,4 +1,5 @@
 import dgram from "dgram";
+import cors from "cors";
 import express from "express";
 
 // Server for PD communication
@@ -24,6 +25,7 @@ UDP_server.on("error", (err) => {
 
 // Server for client communication
 const express_server = express();
+express_server.use(cors());
 
 express_server.listen(3000, () => {
   console.log("express_server running on port 3000");
