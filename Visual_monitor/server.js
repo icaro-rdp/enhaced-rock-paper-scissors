@@ -7,14 +7,21 @@ const UDP_server = dgram.createSocket("udp4");
 UDP_server.bind(41234);
 
 const moves = [undefined, undefined];
+const round = 0;
+
 // gestione dei messaggi che arrivano da PD
+let counterMessages = 0;
+
 UDP_server.on("message", (msg) => {
   handleMessages(moves, msg);
-
+  counterMessages++;
   if (moves[0] !== undefined && moves[1] !== undefined) {
-    console.log("write on excel file", declareWinner(moves));
-    moves[0] = undefined;
-    moves[1] = undefined;
+    if (counterMessages === 2) {
+      console.log(
+        `Game ${counterMessages} - ${moves} - ${declareWinner(moves)} wins`
+      );
+      counterMessages = 0;
+    }
   }
 });
 
