@@ -5,6 +5,12 @@ import { OutlineEffect } from "three/examples/jsm/effects/OutlineEffect.js";
 import GSAP from "gsap";
 import { Pane } from "tweakpane";
 
+setInterval(async () => {
+  const response = await fetch("http://localhost:3000/last-moves");
+  const move = response.data.move;
+  console.log(move);
+}, 1000);
+
 // Pane
 const pane = new Pane({
   container: document.getElementById("pane"),
