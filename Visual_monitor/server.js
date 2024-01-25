@@ -9,7 +9,6 @@ const csvWriter = createCsvWriter({
   path: "games.csv",
   header: [
     { id: "timestamp", title: "TIMESTAMP" },
-    { id: "round", title: "ROUND" },
     { id: "move1", title: "P1-MOVE" },
     { id: "move2", title: "P2-MOVE" },
     { id: "winner", title: "WINNER" },
@@ -20,7 +19,6 @@ const UDP_server = dgram.createSocket("udp4");
 UDP_server.bind(41234);
 
 const moves = [undefined, undefined];
-const round = 0;
 
 // gestione dei messaggi che arrivano da PD
 let counterMessages = 0;
@@ -34,7 +32,6 @@ UDP_server.on("message", (msg) => {
         .writeRecords([
           {
             timestamp: new Date().toISOString(),
-            round: counterMessages,
             move1: moves[0],
             move2: moves[1],
             winner: declareWinner(moves),
