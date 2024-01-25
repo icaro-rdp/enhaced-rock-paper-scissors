@@ -12,6 +12,7 @@ const csvWriter = createCsvWriter({
     { id: "move1", title: "P1-MOVE" },
     { id: "move2", title: "P2-MOVE" },
     { id: "winner", title: "WINNER" },
+    { id: "mode", title: "MODE" },
   ],
 });
 // Server for PD communication
@@ -38,7 +39,7 @@ UDP_server.on("message", (msg) => {
           },
         ])
         .then(() => {
-          console.log("...Writing on CSV done");
+          console.log("Writing on CSV done");
         });
       counterMessages = 0;
     }
