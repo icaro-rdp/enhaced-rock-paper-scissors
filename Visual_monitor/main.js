@@ -7,7 +7,8 @@ import { Pane } from "tweakpane";
 
 setInterval(async () => {
   const response = await fetch("http://localhost:3000/last-moves");
-  const move = response.data.move;
+  const data = await response.json();
+  const move = data.move;
   console.log(move);
 }, 1000);
 
