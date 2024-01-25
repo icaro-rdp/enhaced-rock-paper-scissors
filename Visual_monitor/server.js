@@ -57,14 +57,13 @@ function declareWinner(moves) {
   const p1 = moves[0];
   const p2 = moves[1];
   if (moves.includes(3)) return "Invalid move";
+  if (p1 === undefined || p2 === undefined) return "Invalid move";
   if (p1 === p2) return "Draw";
-  // implement the logic of rock paper scissors with 0 rock 1 as paper 2 as scissors
   if (p1 === 0 && p2 === 1) return "p2";
   if (p1 === 0 && p2 === 2) return "p1";
   if (p1 === 1 && p2 === 0) return "p1";
   if (p1 === 1 && p2 === 2) return "p2";
   if (p1 === 2 && p2 === 0) return "p2";
   if (p1 === 2 && p2 === 1) return "p1";
-  if (p1 === undefined || p2 === undefined) return "Invalid move";
   return "p2";
 }
