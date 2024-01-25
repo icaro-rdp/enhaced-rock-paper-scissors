@@ -25,8 +25,12 @@ import express from "express";
 // Server for client communication
 const express_server = express();
 
-express_server.listen(3000, () => {
+express_server.listen(3000, (msg) => {
   console.log("express_server running on port 3000");
+});
+
+express_server.on("message", (msg) => {
+  console.log(msg);
 });
 
 express_server.get("/moves", (req, res) => {
