@@ -51,7 +51,7 @@ const int button_pin = 7;
 int button_state = 0;
 int last_button_state = 1;
 int round_total = 5;
-const int limit_value = 270;
+const int limit_value = 300;
 int hapticPin_a = 2;
 int hapticPin_b = 3;
 const int flexSensor_reading_time = 3000;
@@ -185,7 +185,7 @@ void checkFingers(int* moves){
   int littlefinger_b = analogRead(A7);    //to change
   
   Serial.print("fingers, ");
-  Serial.println(middlefinger_a);
+  Serial.println(thumb_a);
   //Serial.println("M_a: " + String(middlefinger_a) + ";");
   //Serial.println("L_a: " + String(littlefinger_a) + ";");
   //Serial.println("I_a: " + String(forefinger_a) + ";");
