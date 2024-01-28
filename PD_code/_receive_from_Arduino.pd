@@ -1,4 +1,4 @@
-#N canvas 348 22 1920 944 10;
+#N canvas 95 33 1920 944 10;
 #X msg 511 -92 close;
 #X obj 23 -156 cnv 15 440 60 empty empty empty 20 12 0 14 #c0d828 #404040 0;
 #X msg 500 -119 devices;
@@ -199,7 +199,7 @@
 #X obj 1244 363 print;
 #X msg 1244 335 \$1;
 #X obj 1187 283 r fingers;
-#X obj 1187 311 unpack s f;
+#X obj 1187 311 unpack s s;
 #X connect 0 0 59 0;
 #X connect 2 0 59 0;
 #X connect 3 0 4 0;

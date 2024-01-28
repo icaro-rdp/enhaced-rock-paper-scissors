@@ -184,11 +184,30 @@ void checkFingers(int* moves){
   int ringfinger_b = analogRead(A7);      //to change
   int littlefinger_b = analogRead(A7);    //to change
   
+ // Print player 1 flex sensors values on PD console
   Serial.print("fingers, ");
-  Serial.println(thumb_a);
-  //Serial.println("M_a: " + String(middlefinger_a) + ";");
-  //Serial.println("L_a: " + String(littlefinger_a) + ";");
-  //Serial.println("I_a: " + String(forefinger_a) + ";");
+  Serial.println("T_a:" + String(thumb_a));
+  Serial.print("fingers, ");
+  Serial.println("F_a:" + String(forefinger_a));
+  Serial.print("fingers, ");
+  Serial.println("M_a:" + String(middlefinger_a));
+  Serial.print("fingers, ");
+  Serial.println("R_a:" + String(ringfinger_a));
+  Serial.print("fingers, ");
+  Serial.println("L_a:" + String(littlefinger_a));
+  Serial.print("fingers, ");
+  
+  // Print player 2 flex sensors values on PD console
+  Serial.println("T_b:" + String(thumb_b));
+  Serial.print("fingers, ");
+  Serial.println("F_b:" + String(forefinger_b));
+  Serial.print("fingers, ");
+  Serial.println("M_b:" + String(middlefinger_b));
+  Serial.print("fingers, ");
+  Serial.println("R_b:" + String(ringfinger_b));
+  Serial.print("fingers, ");
+  Serial.println("L_b:" + String(littlefinger_b));
+ 
  
 
   int move_a = check_move(thumb_a, forefinger_a, middlefinger_a, ringfinger_a, littlefinger_a);
