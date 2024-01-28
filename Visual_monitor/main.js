@@ -59,6 +59,7 @@ const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
+const scene2 = new THREE.Scene();
 const bgColor = new THREE.Color(DEFAULTS.bg);
 scene.background = bgColor;
 
@@ -446,13 +447,13 @@ scene.add(directionalLight);
  * Sizes
  */
 const sizes = {
-  width: window.innerWidth / 2,
+  width: window.innerWidth,
   height: window.innerHeight,
 };
 
 window.addEventListener("resize", () => {
   // Update sizes
-  sizes.width = window.innerWidth / 2;
+  sizes.width = window.innerWidth;
   sizes.height = window.innerHeight;
 
   // Update camera
