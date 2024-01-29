@@ -19,9 +19,9 @@ UDP_server.on("message", (msg) => {
     if (counterMessages === 2) {
       let record = {
         timestamp: new Date().toISOString(),
-        move1: "some move",
-        move2: "some other move",
-        winner: "player1 or player2",
+        move1: moves[0],
+        move2: moves[1],
+        winner: declareWinner(moves),
       };
       fs.appendFile(
         "games.csv",
