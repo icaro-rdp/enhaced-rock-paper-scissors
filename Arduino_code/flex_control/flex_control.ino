@@ -47,14 +47,13 @@ int round_played = 0;
 int valid_round_played = 0;
 int a_wins = 0;
 int b_wins = 0;
-const int button_pin = 7;
-int button_state = 0;
-int last_button_state = 1;
-int round_total = 5;
+int round_total = 10;
 const int limit_value = 300;
-int hapticPin_a = 2;
-int hapticPin_b = 3;
-const int flexSensor_reading_time = 3000;
+int hapticPin_a_finger = 2;
+int hapticPin_a_wrist = 3;
+int hapticPin_b_wrist = 5;
+int hapticPin_b_finger = 6;
+const int flexSensor_reading_time = 500;
 bool players_ready = false;
 bool countdown_finished = false;
 bool moves_received = false;
@@ -67,9 +66,10 @@ int moves[2];
 
 void setup() {
   Serial.begin(BAUD_RATE);
-  pinMode(button_pin, INPUT);
-  pinMode(hapticPin_a, OUTPUT);
-  pinMode(hapticPin_b, OUTPUT);
+  pinMode(hapticPin_a_wrist, OUTPUT);
+  pinMode(hapticPin_a_finger, OUTPUT);
+  pinMode(hapticPin_b_wrist, OUTPUT);
+  pinMode(hapticPin_b_finger, OUTPUT);  
 }
 
 /** Functions for handling received messages ***********************************************************************/
@@ -178,11 +178,12 @@ void checkFingers(int* moves){
   int middlefinger_a = analogRead(16);
   int ringfinger_a = analogRead(17);
   int littlefinger_a = analogRead(18);
-  int thumb_b = analogRead(A5);
-  int forefinger_b = analogRead(A6);
-  int middlefinger_b = analogRead(A7);
-  int ringfinger_b = analogRead(A7);      //to change
-  int littlefinger_b = analogRead(A7);    //to change
+
+  int thumb_b = analogRead(37);
+  int forefinger_b = analogRead(36);
+  int middlefinger_b = analogRead(35);
+  int ringfinger_b = analogRead(34);      
+  int littlefinger_b = analogRead(33);    
   
  // Print player 1 flex sensors values on PD console
   Serial.print("fingers, ");
@@ -207,16 +208,15 @@ void checkFingers(int* moves){
   Serial.println("R_b:" + String(ringfinger_b));
   Serial.print("fingers, ");
   Serial.println("L_b:" + String(littlefinger_b));
- 
- 
+  
 
   int move_a = check_move(thumb_a, forefinger_a, middlefinger_a, ringfinger_a, littlefinger_a);
   int move_b = check_move(thumb_b, forefinger_b, middlefinger_b, ringfinger_b, littlefinger_b);
   moves[0] = move_a;
-  // moves[1] = move_b;
+  moves[1] = move_b;
 
   // moves[0] = 1;
-  moves[1] = 1;
+  // moves[1] = 1;
 }
 
 /** Functions for send IR values to PD ********************************************************************/
@@ -263,55 +263,63 @@ void sendIRPd(){
 
 void giveFeedback(int win){
   if(win == 0 or win == 3){                 //draw or null
-    digitalWrite(hapticPin_a, HIGH);
-    digitalWrite(hapticPin_b, HIGH);
+    digitalWrite(hapticPin_a_finger, HIGH);
+    digitalWrite(hapticPin_a_wrist, HIGH);
+    digitalWrite(hapticPin_b_finger, HIGH);
+    digitalWrite(hapticPin_b_wrist, HIGH);
     delay(500);
-    digitalWrite(hapticPin_a, LOW);
-    digitalWrite(hapticPin_b, LOW);
+    digitalWrite(hapticPin_a_finger, LOW);
+    digitalWrite(hapticPin_b_finger, LOW);
+    digitalWrite(hapticPin_a_wrist, LOW);
+    digitalWrite(hapticPin_b_wrist, LOW);
     delay(200);
-    digitalWrite(hapticPin_a, HIGH);
-    digitalWrite(hapticPin_b, HIGH);
+    digitalWrite(hapticPin_a_finger, HIGH);
+    digitalWrite(hapticPin_b_finger, HIGH);
+    digitalWrite(hapticPin_a_wrist, HIGH);
+    digitalWrite(hapticPin_b_wrist, HIGH);
     delay(500);
-    digitalWrite(hapticPin_a, LOW);
-    digitalWrite(hapticPin_b, LOW);
+    digitalWrite(hapticPin_a_finger, LOW);
+    digitalWrite(hapticPin_b_finger, LOW);
+    digitalWrite(hapticPin_a_wrist, LOW);
+    digitalWrite(hapticPin_b_wrist, LOW);
   } else if (win == 1) {                      //playerA wins
-    digitalWrite(hapticPin_a, HIGH);
-    digitalWrite(hapticPin_b, HIGH);
+    digitalWrite(hapticPin_a_finger, HIGH);
+    digitalWrite(hapticPin_b_wrist, HIGH);
     delay(100);
-    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_a_finger, LOW);
     delay(100);
-    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_a_finger, HIGH);
     delay(100);
-    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_a_finger, LOW);
     delay(100);
-    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_a_finger, HIGH);
     delay(100);
-    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_a_finger, LOW);
     delay(100);
-    digitalWrite(hapticPin_a, HIGH);
+    digitalWrite(hapticPin_a_finger, HIGH);
     delay(100);
-    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_a_finger, LOW);
     delay(300);
-    digitalWrite(hapticPin_b, LOW);
+    digitalWrite(hapticPin_b_wrist, LOW);
   } else if (win == 2) {                        //playerB wins
-    digitalWrite(hapticPin_a, HIGH);
-    digitalWrite(hapticPin_b, HIGH);
+    digitalWrite(hapticPin_a_wrist, HIGH);
+    digitalWrite(hapticPin_b_finger, HIGH);
     delay(100);
-    digitalWrite(hapticPin_b, LOW);
+    digitalWrite(hapticPin_b_finger, LOW);
     delay(100);
-    digitalWrite(hapticPin_b, HIGH);
+    digitalWrite(hapticPin_b_finger, HIGH);
     delay(100);
-    digitalWrite(hapticPin_b, LOW);
+    digitalWrite(hapticPin_b_finger, LOW);
     delay(100);
-    digitalWrite(hapticPin_b, HIGH);
+    digitalWrite(hapticPin_b_finger, HIGH);
     delay(100);
-    digitalWrite(hapticPin_b, LOW);
+    digitalWrite(hapticPin_b_finger, LOW);
     delay(100);
-    digitalWrite(hapticPin_b, HIGH);
+    digitalWrite(hapticPin_b_finger, HIGH);
     delay(100);
-    digitalWrite(hapticPin_b, LOW);
+    digitalWrite(hapticPin_b_finger, LOW);
     delay(300);
-    digitalWrite(hapticPin_a, LOW);
+    digitalWrite(hapticPin_a_wrist, LOW);
   }
 }
 
@@ -414,7 +422,7 @@ void loop() {
     Serial.print("console, ");
     Serial.println("read_flex");
     checkFingers(moves);    
-    delay(500);
+    delay(100);
   }
   Serial.print("console, ");
   Serial.println("read_end");
