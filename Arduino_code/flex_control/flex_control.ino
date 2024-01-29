@@ -261,8 +261,8 @@ void sendIRPd(){
 
 /** Function for send feedback about result to PD ****************************************************************/
 
-void giveFeedback(int win){
-  if(win == 0 or win == 3){                 //draw or null
+void giveFeedback(int win) {
+  if(win == 0 or win == 3) {                 //draw or null
     digitalWrite(hapticPin_a_finger, HIGH);
     digitalWrite(hapticPin_a_wrist, HIGH);
     digitalWrite(hapticPin_b_finger, HIGH);
@@ -272,7 +272,17 @@ void giveFeedback(int win){
     digitalWrite(hapticPin_b_finger, LOW);
     digitalWrite(hapticPin_a_wrist, LOW);
     digitalWrite(hapticPin_b_wrist, LOW);
-    delay(200);
+    delay(500);
+    digitalWrite(hapticPin_a_finger, HIGH);
+    digitalWrite(hapticPin_b_finger, HIGH);
+    digitalWrite(hapticPin_a_wrist, HIGH);
+    digitalWrite(hapticPin_b_wrist, HIGH);
+    delay(500);
+    digitalWrite(hapticPin_a_finger, LOW);
+    digitalWrite(hapticPin_b_finger, LOW);
+    digitalWrite(hapticPin_a_wrist, LOW);
+    digitalWrite(hapticPin_b_wrist, LOW);
+    delay(500);
     digitalWrite(hapticPin_a_finger, HIGH);
     digitalWrite(hapticPin_b_finger, HIGH);
     digitalWrite(hapticPin_a_wrist, HIGH);
@@ -287,38 +297,48 @@ void giveFeedback(int win){
     digitalWrite(hapticPin_b_wrist, HIGH);
     delay(100);
     digitalWrite(hapticPin_a_finger, LOW);
+    digitalWrite(hapticPin_b_wrist, LOW);
     delay(100);
     digitalWrite(hapticPin_a_finger, HIGH);
+    digitalWrite(hapticPin_b_wrist, HIGH);
     delay(100);
     digitalWrite(hapticPin_a_finger, LOW);
+    digitalWrite(hapticPin_b_wrist, LOW);
     delay(100);
     digitalWrite(hapticPin_a_finger, HIGH);
+    digitalWrite(hapticPin_b_wrist, HIGH);
     delay(100);
     digitalWrite(hapticPin_a_finger, LOW);
+    digitalWrite(hapticPin_b_wrist, LOW);
     delay(100);
     digitalWrite(hapticPin_a_finger, HIGH);
+    digitalWrite(hapticPin_b_wrist, HIGH);
     delay(100);
     digitalWrite(hapticPin_a_finger, LOW);
-    delay(300);
     digitalWrite(hapticPin_b_wrist, LOW);
   } else if (win == 2) {                        //playerB wins
     digitalWrite(hapticPin_a_wrist, HIGH);
     digitalWrite(hapticPin_b_finger, HIGH);
     delay(100);
     digitalWrite(hapticPin_b_finger, LOW);
+    digitalWrite(hapticPin_a_wrist, LOW);
     delay(100);
     digitalWrite(hapticPin_b_finger, HIGH);
+    digitalWrite(hapticPin_a_wrist, HIGH);
     delay(100);
     digitalWrite(hapticPin_b_finger, LOW);
+    digitalWrite(hapticPin_a_wrist, LOW);
     delay(100);
     digitalWrite(hapticPin_b_finger, HIGH);
+    digitalWrite(hapticPin_a_wrist, HIGH);
     delay(100);
     digitalWrite(hapticPin_b_finger, LOW);
+    digitalWrite(hapticPin_a_wrist, LOW);
     delay(100);
     digitalWrite(hapticPin_b_finger, HIGH);
+    digitalWrite(hapticPin_a_wrist, HIGH);
     delay(100);
     digitalWrite(hapticPin_b_finger, LOW);
-    delay(300);
     digitalWrite(hapticPin_a_wrist, LOW);
   }
 }
