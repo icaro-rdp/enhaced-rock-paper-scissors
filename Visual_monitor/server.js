@@ -39,6 +39,12 @@ UDP_server.on("message", (msg) => {
 UDP_server.on("listening", () => {
   const address = UDP_server.address();
   console.log(`UDP_server running on ${address.address}:${address.port}`);
+
+  if (!fs.existsSync("games.csv"))
+    fs.writeFile("games.csv", "timestamp,move1,move2,winner\n", (err) => {
+      if (err) throw err;
+      console.log("Writing on CSV done");
+    });
 });
 
 UDP_server.on("error", (err) => {
