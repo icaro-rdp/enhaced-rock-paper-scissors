@@ -59,7 +59,6 @@ bool countdown_finished = false;
 bool moves_received = false;
 bool winner_announced = false;
 bool valid_round = true;
-bool invalid_announced = false;
 int moves[2];
 
 /** Setup function *************************************************************************************/
@@ -138,10 +137,6 @@ void handle_received_message(char *received_message) {
   if (strcmp(command,"win_ann") == 0) {   
     winner_announced = true;
   } 
-
-  if (strcmp(command,"inv_ann") == 0) {   
-    invalid_announced = true;
-  }
 } 
 
 /** Functions for mapping fingers with moves ***********************************************************************
@@ -358,46 +353,65 @@ void sendMovesPd(int move_a, int move_b){
     Data mapping: 0 = "rock"    1 = "paper"   2 = "scissors"    3 = "invalid"                                     */
 
 int checkWinner(int move_a, int move_b){
-  //Serial.println("PlayerA: " + move_a + "; PlayerB: " + move_b);
   if(move_a == 3 || move_b == 3){   //at least one invalid move
     giveFeedback(3);
+    Serial.print("console, ");
+    Serial.println("Invalid_move");
     return 0;
   } else if(move_a == 1){           
     if(move_b == 2){                // paper - scissors
       b_wins++;
+      Serial.print("console, ");
+      Serial.println("Player2_wins");
       giveFeedback(2);
       return 2;
     } else if(move_b == 0){        // paper - rock
       a_wins++;
+      Serial.print("console, ");
+      Serial.println("Player1_wins");
       giveFeedback(1);
       return 1;
     } else {
+      Serial.print("console, ");
+      Serial.println("Draw");
       giveFeedback(0);              // paper - paper
       return 3;
     }
   } else if (move_a == 2){
     if(move_b == 1){                // scissors - paper
       a_wins++;
+      Serial.print("console, ");
+      Serial.println("Player1_wins");
       giveFeedback(1);
       return 1;
     } else if(move_b == 0){         // scissors - rock
       b_wins++;
+      Serial.print("console, ");
+      Serial.println("Player2_wins");
       giveFeedback(2);
       return 2;
     } else {                        // scissors - scissors
+      Serial.print("console, ");
+      Serial.println("Draw");
       giveFeedback(0);
       return 3;
     }
   } else {
     if(move_b == 1){                // rock - paper
       b_wins++;
+      Serial.print("console, ");
+      Serial.println("Player2_wins");
       giveFeedback(2);
       return 2;
     } else if(move_b == 2){         // rock - scissors
       a_wins++;
+      Serial.print("console, ");
+      Serial.println("Player1_wins");
       giveFeedback(1);
       return 1;
     } else {                        // rock - rock
+      Serial.print("console, ");
+      Serial.println("Draw");
       giveFeedback(0);
       return 3;
     }
@@ -463,8 +477,6 @@ void loop() {
   if (winner != 0) {
     round_played ++;
     valid_round_played ++;
-    //Serial.println("Round " + String(round_played) + " result: " + winner);
-    //Serial.println("Partial result: PlayerA " + String(a_wins) + " - PlayerB " + String(b_wins));
   } else {
     round_played ++;
   }
@@ -475,28 +487,16 @@ void loop() {
     receive_message();
   }
   
+  /** Round advancement ****************************************************/
+  players_ready = false;
+  countdown_finished = false;
+  moves_received = false;
+  winner_announced = false;
+  valid_round = true;
+  
+ 
 
-  /** Round advancement or final winner determination ****************************************************/
-  while(true){
-    players_ready = false;
-    countdown_finished = false;
-    moves_received = false;
-    winner_announced = false;
-    valid_round = true;
-    invalid_announced = false;
-    if(valid_round_played < round_total){
-      String next_round = String(valid_round_played + 1);
-      Serial.print("console, ");
-      Serial.println("nxt_round");
-      break;  
-    } else {
-      String final_winner = checkFinalWinner();
-      Serial.print("console, ");
-      Serial.println(final_winner);
-      round_played = 0;
-      a_wins = 0;
-      b_wins = 0;
-      break;
-    }
-  }
+  Serial.print("console, ");
+  Serial.println("nxt_round");  
+  
 }
