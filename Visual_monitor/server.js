@@ -17,14 +17,12 @@ UDP_server.on("message", (msg) => {
   counterMessages++;
   if (moves[0] !== undefined && moves[1] !== undefined) {
     if (counterMessages === 2) {
-      const record = [
-        {
-          timestamp: new Date().toISOString(),
-          move1: moves[0],
-          move2: moves[1],
-          winner: declareWinner(moves),
-        },
-      ];
+      let record = {
+        timestamp: new Date().toISOString(),
+        move1: "some move",
+        move2: "some other move",
+        winner: "player1 or player2",
+      };
       fs.appendFile(
         "games.csv",
         `${record.timestamp},${record.move1},${record.move2},${record.winner}\n`,
