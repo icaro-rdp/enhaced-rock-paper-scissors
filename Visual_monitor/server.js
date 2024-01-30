@@ -13,6 +13,7 @@ const moves = [undefined, undefined];
 let counterMessages = 0;
 
 UDP_server.on("message", (msg) => {
+  console.log(msg);
   handleMessages(moves, msg);
 
   counterMessages++;

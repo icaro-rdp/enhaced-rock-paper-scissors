@@ -6,11 +6,13 @@ import GSAP from "gsap";
 import { Pane } from "tweakpane";
 
 // Function to get the last move from the server
+let handsMove =[3,3] 
 setInterval(async () => {
   try {
     const response = await fetch("http://localhost:3000/last-moves");
     const data = await response.json();
-    const handsMove = data.move ?? [3, 3];
+    console.log(data);
+    handsMove = data?.move ?? [3, 3];
   } catch (err) {
     console.log(err);
   }
@@ -318,6 +320,7 @@ const setBones = () => {
   const pinkyRotation = [pinky1.rotation, pinky2.rotation, pinky3.rotation];
 
   rock.addEventListener("click", () => {
+    console.log(handsMove);
     const tlRaisedHand = GSAP.timeline();
 
     tlRaisedHand
