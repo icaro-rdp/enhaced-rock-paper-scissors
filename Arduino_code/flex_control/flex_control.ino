@@ -20,8 +20,8 @@ boolean new_message_received = false;
 
 #define ANALOG_PERIOD_MICROSECS 1000
 static uint32_t analog_last_read = 0;
-uint16_t analog_input0_pin = 19;
-uint16_t analog_input1_pin = 20;
+uint16_t analog_input0_pin = 20;
+uint16_t analog_input1_pin = 19;
 uint16_t analog_input0 = 0;
 uint16_t analog_input1 = 0;
 uint16_t analog_input0_lp_filtered = 0;
