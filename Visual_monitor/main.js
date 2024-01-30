@@ -6,15 +6,15 @@ import GSAP from "gsap";
 import { Pane } from "tweakpane";
 
 // Function to get the last move from the server
-// setInterval(async () => {
-//   try {
-//     const response = await fetch("http://localhost:3000/last-moves");
-//     const data = await response.json();
-//     const move = data.move ?? [undefined, undefined];
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }, 1000);
+setInterval(async () => {
+  try {
+    const response = await fetch("http://localhost:3000/last-moves");
+    const data = await response.json();
+    const handsMove = data.move ?? [3, 3];
+  } catch (err) {
+    console.log(err);
+  }
+}, 1000);
 
 // Pane
 const pane = new Pane({

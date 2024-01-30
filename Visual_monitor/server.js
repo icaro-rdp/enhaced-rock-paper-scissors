@@ -11,26 +11,27 @@ const moves = [undefined, undefined];
 
 // gestione dei messaggi che arrivano da PD
 let counterMessages = 0;
-
+let id = 0;
 UDP_server.on("message", (msg) => {
   handleMessages(moves, msg);
   counterMessages++;
   if (moves[0] !== undefined && moves[1] !== undefined) {
     if (counterMessages === 2) {
-      let record = {
-        timestamp: new Date().toISOString(),
-        move1: moves[0],
-        move2: moves[1],
-        winner: declareWinner(moves),
-      };
       // read the last row of the csv file and get the id
       fs.readFile("games.csv", "utf8", (err, data) => {
         if (err) throw err;
         const rows = data.split("\n");
         const lastRow = rows[rows.length - 2];
-        const id = parseInt(lastRow.split(",")[0]) + 1;
-        record = { id, ...record };
+        id = parseInt(lastRow.split(",")[0]) + 1;
       });
+
+      let record = {
+        id: id,
+        timestamp: new Date().toISOString(),
+        move1: moves[0],
+        move2: moves[1],
+        winner: declareWinner(moves),
+      };
 
       fs.appendFile(
         "games.csv",
