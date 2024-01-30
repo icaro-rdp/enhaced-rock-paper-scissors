@@ -14,17 +14,17 @@ let counterMessages = 0;
 let id = 0;
 UDP_server.on("message", (msg) => {
   handleMessages(moves, msg);
+  fs.readFile("games.csv", "utf8", (err, data) => {
+    if (err) throw err;
+    const rows = data.split("\n");
+    const lastRow = rows[rows.length - 2];
+    id = parseInt(lastRow.split(",")[0]) + 1;
+  });
+
   counterMessages++;
   if (moves[0] !== undefined && moves[1] !== undefined) {
     if (counterMessages === 2) {
       // read the last row of the csv file and get the id
-      fs.readFile("games.csv", "utf8", (err, data) => {
-        if (err) throw err;
-        const rows = data.split("\n");
-        const lastRow = rows[rows.length - 2];
-        id = parseInt(lastRow.split(",")[0]) + 1;
-      });
-
       let record = {
         id: id,
         timestamp: new Date().toISOString(),
