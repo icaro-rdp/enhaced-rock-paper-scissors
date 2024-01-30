@@ -23,9 +23,18 @@ UDP_server.on("message", (msg) => {
         move2: moves[1],
         winner: declareWinner(moves),
       };
+      // read the last row of the csv file and get the id
+      fs.readFile("games.csv", "utf8", (err, data) => {
+        if (err) throw err;
+        const rows = data.split("\n");
+        const lastRow = rows[rows.length - 2];
+        const id = parseInt(lastRow.split(",")[0]) + 1;
+        record = { id, ...record };
+      });
+
       fs.appendFile(
         "games.csv",
-        `${record.timestamp},${record.move1},${record.move2},${record.winner}\n`,
+        `${record.id},${record.timestamp},${record.move1},${record.move2},${record.winner}\n`,
         (err) => {
           if (err) throw err;
           console.log("Writing on CSV done");
@@ -41,7 +50,7 @@ UDP_server.on("listening", () => {
   console.log(`UDP_server running on ${address.address}:${address.port}`);
 
   if (!fs.existsSync("games.csv"))
-    fs.writeFile("games.csv", "timestamp,move1,move2,winner\n", (err) => {
+    fs.writeFile("games.csv", "id,timestamp,move1,move2,winner\n", (err) => {
       if (err) throw err;
       console.log("Writing on CSV done");
     });
