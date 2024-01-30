@@ -18,7 +18,7 @@ UDP_server.on("message", (msg) => {
     if (err) throw err;
     const rows = data.split("\n");
     const lastRow = rows[rows.length - 2];
-    id = parseInt(lastRow.split(",")[0]) + 1;
+    id = parseInt(lastRow.split(",")[0]) + 1 || 0;
   });
 
   counterMessages++;
