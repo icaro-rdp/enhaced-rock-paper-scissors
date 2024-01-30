@@ -11,24 +11,15 @@ const moves = [undefined, undefined];
 
 // gestione dei messaggi che arrivano da PD
 let counterMessages = 0;
-let id = 0;
+
 UDP_server.on("message", (msg) => {
   handleMessages(moves, msg);
 
   counterMessages++;
   if (moves[0] !== undefined && moves[1] !== undefined) {
     if (counterMessages === 2) {
-      fs.readFile("games.csv", "utf8", (err, data) => {
-        if (err) throw err;
-        const rows = data.split("\n");
-        console.log(rows);
-        const lastRow = rows[rows.length - 2];
-        console.log(lastRow);
-        id = 0;
-      });
 
       let record = {
-        id: id,
         timestamp: new Date().toISOString(),
         move1: moves[0],
         move2: moves[1],
@@ -37,7 +28,7 @@ UDP_server.on("message", (msg) => {
 
       fs.appendFile(
         "games.csv",
-        `${record.id},${record.timestamp},${record.move1},${record.move2},${record.winner}\n`,
+        `${record.timestamp},${record.move1},${record.move2},${record.winner}\n`,
         (err) => {
           if (err) throw err;
           console.log("Writing on CSV done");
@@ -53,7 +44,7 @@ UDP_server.on("listening", () => {
   console.log(`UDP_server running on ${address.address}:${address.port}`);
 
   if (!fs.existsSync("games.csv"))
-    fs.writeFile("games.csv", "id,timestamp,move1,move2,winner\n", (err) => {
+    fs.writeFile("games.csv", "timestamp,move1,move2,winner\n", (err) => {
       if (err) throw err;
       console.log("Writing on CSV done");
     });
