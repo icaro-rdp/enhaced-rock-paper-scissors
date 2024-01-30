@@ -48,7 +48,9 @@ int valid_round_played = 0;
 int a_wins = 0;
 int b_wins = 0;
 int round_total = 10;
-const int limit_value = 300;
+const int limit_value = 320;
+const int limit_value_little = 375;
+const int limit_value_f_a = 360;
 int hapticPin_a_finger = 2;
 int hapticPin_a_wrist = 3;
 int hapticPin_b_wrist = 5;
@@ -141,25 +143,50 @@ void handle_received_message(char *received_message) {
 
 /** Functions for mapping fingers with moves ***********************************************************************
     Data mapping: 0 = "rock"    1 = "paper"   2 = "scissors"    3 = "invalid"                                      */
-
 int check_move(int thumb, int forefinger, int middlefinger, 
                   int ringfinger, int littlefinger){
   if(thumb<limit_value){
+    if(forefinger < limit_value_f_a & middlefinger < limit_value & 
+      ringfinger < limit_value_little & littlefinger < limit_value){
+      return 0;                                                                     // rock
+    } else if(forefinger > limit_value_f_a & middlefinger > limit_value & 
+      ringfinger < limit_value_little & littlefinger < limit_value){
+      return 2;                                                                     // scissors
+    } else {
+      return 3;                                                                     // invalid
+    }
+  } else{
+    if(forefinger > limit_value_f_a & middlefinger > limit_value & 
+      ringfinger < limit_value_little & littlefinger < limit_value){
+      return 2;                                                                     // scissors
+    } else if(forefinger > limit_value_f_a & middlefinger > limit_value & 
+      ringfinger > limit_value_little & littlefinger > limit_value){
+      return 1;                                                                     // paper
+    } else {
+      return 3;                                                                     // invalid
+    }
+  }
+}
+
+
+int check_move_b(int thumb, int forefinger, int middlefinger, 
+                  int ringfinger, int littlefinger){
+  if(thumb<limit_value){
     if(forefinger < limit_value & middlefinger < limit_value & 
-      ringfinger < limit_value & littlefinger < limit_value){
+      ringfinger < limit_value_little & littlefinger < limit_value_little){
       return 0;                                                                     // rock
     } else if(forefinger > limit_value & middlefinger > limit_value & 
-      ringfinger < limit_value & littlefinger < limit_value){
+      ringfinger < limit_value_little & littlefinger < limit_value_little){
       return 2;                                                                     // scissors
     } else {
       return 3;                                                                     // invalid
     }
   } else{
     if(forefinger > limit_value & middlefinger > limit_value & 
-      ringfinger < limit_value & littlefinger < limit_value){
+      ringfinger < limit_value_little & littlefinger < limit_value_little){
       return 2;                                                                     // scissors
     } else if(forefinger > limit_value & middlefinger > limit_value & 
-      ringfinger > limit_value & littlefinger > limit_value){
+      ringfinger > limit_value_little & littlefinger > limit_value_little){
       return 1;                                                                     // paper
     } else {
       return 3;                                                                     // invalid
@@ -206,7 +233,7 @@ void checkFingers(int* moves){
   
 
   int move_a = check_move(thumb_a, forefinger_a, middlefinger_a, ringfinger_a, littlefinger_a);
-  int move_b = check_move(thumb_b, forefinger_b, middlefinger_b, ringfinger_b, littlefinger_b);
+  int move_b = check_move_b(thumb_b, forefinger_b, middlefinger_b, ringfinger_b, littlefinger_b);
   moves[0] = move_a;
   moves[1] = move_b;
 
