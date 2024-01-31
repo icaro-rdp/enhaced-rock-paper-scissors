@@ -16,12 +16,13 @@ Note: you can choose to plot the standard deviation or the error bars in the plo
 
 import csv
 import sys
+import os
 import numpy as np
 import scipy.stats as st
 import matplotlib.pyplot as plt
 from textwrap import wrap
 
-
+os.chdir('Research/Quantitative/SUS')
 infile = 'sus-input-data.csv'
 outfile = 'sus-results.csv'
 
