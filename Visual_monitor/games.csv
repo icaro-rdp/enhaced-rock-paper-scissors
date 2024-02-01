@@ -177,3 +177,38 @@ C4 - not blind
 2024-02-01T16:55:25.265Z,paper,rock,p1
 2024-02-01T16:55:39.048Z,scissor,paper,p1
 C5 - tutorial
+2024-02-01T17:13:13.856Z,rock,scissor,p1
+2024-02-01T17:13:36.626Z,scissor,rock,p2
+2024-02-01T17:13:55.281Z,paper,paper,Draw
+C5 - not blind
+2024-02-01T17:14:43.338Z,paper,rock,p1
+2024-02-01T17:15:00.098Z,paper,paper,Draw
+2024-02-01T17:15:19.043Z,rock,scissor,p1
+2024-02-01T17:15:34.530Z,scissor,scissor,Draw
+2024-02-01T17:15:51.897Z,paper,scissor,p2
+2024-02-01T17:16:09.005Z,rock,scissor,p1
+2024-02-01T17:16:25.977Z,paper,paper,Draw
+2024-02-01T17:16:44.740Z,scissor,scissor,Draw
+2024-02-01T17:17:03.903Z,paper,scissor,p2
+2024-02-01T17:17:20.235Z,paper,scissor,p2
+2024-02-01T17:17:40.814Z,scissor,paper,p1
+2024-02-01T17:17:56.236Z,rock,rock,Draw
+2024-02-01T17:18:12.815Z,scissor,scissor,Draw
+2024-02-01T17:18:30.150Z,paper,scissor,p2
+2024-02-01T17:18:46.542Z,paper,rock,p1
+C5 - blind
+2024-02-01T17:20:03.902Z,rock,scissor,p1
+2024-02-01T17:20:19.204Z,scissor,scissor,Draw
+2024-02-01T17:20:42.509Z,paper,paper,Draw
+2024-02-01T17:21:05.765Z,rock,rock,Draw
+2024-02-01T17:21:23.759Z,paper,paper,Draw
+2024-02-01T17:21:41.064Z,scissor,rock,p2
+2024-02-01T17:21:55.576Z,rock,rock,Draw
+2024-02-01T17:22:12.267Z,scissor,scissor,Draw
+2024-02-01T17:22:29.318Z,scissor,scissor,Draw
+2024-02-01T17:22:52.934Z,rock,paper,p2
+2024-02-01T17:23:12.307Z,scissor,scissor,Draw
+2024-02-01T17:23:36.433Z,rock,rock,Draw
+2024-02-01T17:24:02.538Z,paper,scissor,p2
+2024-02-01T17:24:18.231Z,scissor,rock,p2
+2024-02-01T17:24:36.171Z,scissor,paper,p1
