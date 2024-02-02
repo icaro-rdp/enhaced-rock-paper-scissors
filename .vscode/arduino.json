@@ -1,4 +1,3 @@
 {
-    "board": "arduino:avr:uno",
-    "sketch": "Arduino_code/flex_control.ino"
+    "board": "arduino:avr:uno"
 }
