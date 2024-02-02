@@ -11,16 +11,20 @@ os.chdir('Research/Quantitative/Hypothesis_testing')
 # The output is a new csv file with the cleaned data
 with open('games.csv', newline='') as f:
     reader = csv.reader(f)
-    # Removing the header from the list
+    
+    # Removing the header from the list and adding the id and mode columns
     header = next(reader)
     header.insert(0, "id")
     header.append("mode")
     file_data = list(reader)[0:]
+
+    # Initializing the variables to store the game mode, the game count and the game id
     mode = ''
-    
     count = 0
     gameId = 0
     clean_data = []
+
+    # Looping through the data and cleaning it
     for rows in file_data: 
         rows.insert(0, "")
         
@@ -44,7 +48,6 @@ with open('games.csv', newline='') as f:
 
     final_data = [rows for rows in clean_data if rows[-1] != 'test']
     final_data.insert(0, header)
-    # write a new file with the cleaned data
     with open('games_cleaned.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerows(final_data)
