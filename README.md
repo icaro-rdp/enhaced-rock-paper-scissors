@@ -1,4 +1,3 @@
-# 3- Visual Monitor
+# How to read README.md within the project
 
-Prima di tutto, installare [Node.js](https://nodejs.org/en/download/).
-Poi seguire le istruzioni per installare le dipendenze e avviare il server.
+We have multiple README.md files inside each folders.
