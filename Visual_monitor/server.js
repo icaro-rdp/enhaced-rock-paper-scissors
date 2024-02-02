@@ -122,6 +122,6 @@ function declareWinner(moves) {
 function getMove(number) {
   if (number === 0) return "rock";
   if (number === 1) return "paper";
-  if (number === 2) return "scissor";
+  if (number === 2) return "scissors";
   return "invalid";
 }

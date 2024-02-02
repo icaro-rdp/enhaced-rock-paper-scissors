@@ -1,5 +1,6 @@
 import csv
 import os 
+import matplotlib.pyplot as plt
 
 # Setting the working directory to the current directory
 os.chdir('Research/Quantitative/Hypothesis_testing')
@@ -50,6 +51,35 @@ with open('games_cleaned.csv', newline='') as f:
    csv_reader = csv.DictReader(f)
    data = [row for row in csv_reader]
 
-print(data)
+
+def count_moves(move, dict):
+    count = 0
+    for row in dict:
+        if row['move1'] == move:
+            count += 1
+        if row['move2'] == move:
+            count += 1
+    return f"The move {move} was played {count} times"
+
+def count_moves_by_mode(move, mode, dict):
+    count = 0
+    for row in dict:
+        if row['move1'] == move and row['mode'] == mode:
+            count += 1
+        if row['move2'] == move and row['mode'] == mode:
+            count += 1
+    return f"The move {move} was played {count} times in {mode} mode"
+
+print(count_moves('rock', data))
+print(count_moves('paper', data))
+print(count_moves('scissors', data))
+print("")
+print(count_moves_by_mode('rock', 'blind', data))
+print(count_moves_by_mode('paper', 'blind', data))
+print(count_moves_by_mode('scissors', 'blind', data))
+print("")
+print(count_moves_by_mode('rock', 'not blind', data))
+print(count_moves_by_mode('paper', 'not blind', data))
+print(count_moves_by_mode('scissors', 'not blind', data))
 
 
