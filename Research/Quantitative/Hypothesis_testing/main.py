@@ -84,6 +84,9 @@ for id in list_unique_ids:
     rects2 = ax.bar(x + width/2, p2_values, width, label='P2')
     ax.set_xlabel('Mode')
     ax.set_ylabel('Win Percentage')
+    #set to 100 to show the percentage
+    ax.set_yticks(np.arange(0, 101, 10))
+    ax.set_yticklabels([f'{int(x)}%' for x in np.arange(0, 101, 10)])
     ax.set_title(f'Win Percentage for {id}')
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
