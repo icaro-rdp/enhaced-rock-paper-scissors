@@ -1,10 +1,14 @@
 import csv
 import os 
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 # Setting the working directory to the current directory
 os.chdir('Research/Quantitative/Hypothesis_testing')
 
+# Reading the data from the csv file and manipulating it
+# The output is a new csv file with the cleaned data
 with open('games.csv', newline='') as f:
     reader = csv.reader(f)
     # Removing the header from the list
@@ -33,7 +37,7 @@ with open('games.csv', newline='') as f:
             mode = 'not blind'
             continue
         
-        rows[0] = f"{gameId}R{count}"
+        rows[0] = f"{gameId}R{count}{'B' if mode == 'blind' else 'NB'}"
         clean_data.append(rows)
         rows.append(mode)
         count += 1
@@ -45,41 +49,44 @@ with open('games.csv', newline='') as f:
         writer = csv.writer(f)
         writer.writerows(final_data)
     
-#transforming the data into a dictionary
-    
-with open('games_cleaned.csv', newline='') as f:
-   csv_reader = csv.DictReader(f)
-   data = [row for row in csv_reader]
+# Reading the cleaned data and converting it to a pandas dataframe    
+games_df = pd.read_csv('games_cleaned.csv')
 
+# If needed statistics with the invalid moves do it above this line
 
-def count_moves(move, dict):
-    count = 0
-    for row in dict:
-        if row['move1'] == move:
-            count += 1
-        if row['move2'] == move:
-            count += 1
-    return f"The move {move} was played {count} times"
+# Removing the rows with invalid moves
+games_df = games_df[(games_df['winner'] != 'Invalid move' ) & (games_df['winner'] != 'Draw')]
 
-def count_moves_by_mode(move, mode, dict):
-    count = 0
-    for row in dict:
-        if row['move1'] == move and row['mode'] == mode:
-            count += 1
-        if row['move2'] == move and row['mode'] == mode:
-            count += 1
-    return f"The move {move} was played {count} times in {mode} mode"
+# Listing the unique IDs in the dataframe 
+list_unique_ids = games_df['id'].str.split('R', expand=True)[0].unique()
 
-print(count_moves('rock', data))
-print(count_moves('paper', data))
-print(count_moves('scissors', data))
-print("")
-print(count_moves_by_mode('rock', 'blind', data))
-print(count_moves_by_mode('paper', 'blind', data))
-print(count_moves_by_mode('scissors', 'blind', data))
-print("")
-print(count_moves_by_mode('rock', 'not blind', data))
-print(count_moves_by_mode('paper', 'not blind', data))
-print(count_moves_by_mode('scissors', 'not blind', data))
+# Plotting the win percentage for each mode just to visualize the data (not part of the hypothesis testing)
+for id in list_unique_ids:
+    game_df = games_df[games_df['id'].str.startswith(id)]
 
+    # Calculating the win percentage for each mode
+    win_percentage_blind =game_df[game_df["mode"] == "blind"]["winner"].value_counts(ascending=True, normalize=True)*100;
+    win_percentage_not_blind = game_df[game_df["mode"] == "not blind"].winner.value_counts(ascending=True, normalize=True)*100;
 
+    labels = ['Blind', 'Not Blind']
+    players = win_percentage_blind.index
+
+    p1_values = [win_percentage_blind.get('p1', 0), win_percentage_not_blind.get('p1', 0)]
+    p2_values = [win_percentage_blind.get('p2', 0), win_percentage_not_blind.get('p2', 0)]
+
+    x = np.arange(len(labels))  # the label locations
+    width = 0.35  # the width of the bars
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(x - width/2, p1_values, width, label='P1')
+    rects2 = ax.bar(x + width/2, p2_values, width, label='P2')
+    ax.set_xlabel('Mode')
+    ax.set_ylabel('Win Percentage')
+    ax.set_title(f'Win Percentage for {id}')
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.legend()
+
+    # create a folder to save the plots
+    if not os.path.exists('plots'):
+        os.makedirs('plots')
+    plt.savefig(f'plots/winning_rate_{id}.png')
