@@ -71,6 +71,9 @@ for id in list_unique_ids:
     win_percentage_blind =game_df[game_df["mode"] == "blind"]["winner"].value_counts(ascending=True, normalize=True)*100;
     win_percentage_not_blind = game_df[game_df["mode"] == "not blind"].winner.value_counts(ascending=True, normalize=True)*100;
 
+    print(f'Win percentage for {id} in blind mode:\n {win_percentage_blind}')
+    print(f'Win percentage for {id} in not blind mode:\n {win_percentage_not_blind}')
+
     labels = ['Blind', 'Not Blind']
     players = win_percentage_blind.index
 
