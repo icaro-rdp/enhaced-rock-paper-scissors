@@ -489,3 +489,35 @@ C14 - blind
 2024-02-03T16:31:35.107Z,scissors,paper,p1
 2024-02-03T16:31:51.166Z,rock,rock,Draw
 C15 - tutorial
+2024-02-03T16:43:41.916Z,rock,scissors,p1
+2024-02-03T16:44:13.157Z,scissors,rock,p2
+2024-02-03T16:44:32.364Z,paper,paper,Draw
+C15 - blind
+2024-02-03T16:46:04.850Z,scissors,scissors,Draw
+2024-02-03T16:46:28.253Z,rock,paper,p2
+2024-02-03T16:47:00.258Z,paper,scissors,p2
+2024-02-03T16:47:17.168Z,scissors,invalid,Invalid move
+2024-02-03T16:47:39.879Z,scissors,paper,p1
+2024-02-03T16:47:57.727Z,rock,paper,p2
+2024-02-03T16:48:13.720Z,paper,rock,p1
+2024-02-03T16:48:36.509Z,scissors,scissors,Draw
+2024-02-03T16:48:56.355Z,scissors,rock,p2
+2024-02-03T16:49:14.480Z,rock,paper,p2
+2024-02-03T16:49:31.784Z,paper,rock,p1
+2024-02-03T16:49:48.203Z,rock,scissors,p1
+2024-02-03T16:50:04.815Z,paper,rock,p1
+C15 - not blind
+2024-02-03T16:50:57.694Z,scissors,scissors,Draw
+2024-02-03T16:51:16.818Z,rock,paper,p2
+2024-02-03T16:51:33.802Z,scissors,scissors,Draw
+2024-02-03T16:51:51.386Z,paper,rock,p1
+2024-02-03T16:52:06.866Z,paper,scissors,p2
+2024-02-03T16:52:23.359Z,scissors,rock,p2
+2024-02-03T16:52:43.362Z,rock,rock,Draw
+2024-02-03T16:52:59.288Z,invalid,scissors,Invalid move
+2024-02-03T16:53:21.524Z,scissors,paper,p1
+2024-02-03T16:53:38.466Z,rock,paper,p2
+2024-02-03T16:53:53.814Z,rock,scissors,p1
+2024-02-03T16:54:08.912Z,scissors,paper,p1
+2024-02-03T16:54:25.289Z,paper,rock,p1
+C16 - tutorial
