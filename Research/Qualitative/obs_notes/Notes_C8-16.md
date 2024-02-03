@@ -1,4 +1,4 @@
-# Notes from C8 to CX
+# Notes from C8 to C16
 
 ## C8
 
@@ -75,3 +75,65 @@ p2 feels a little upset when she not find the sensor
 p1 look at p2 hands after having performed his move
 p1 and p2 laugh when they move the same
 p1 don't remember to place the thumb properly
+
+## C13
+
+non blind
+
+p2 pensava che la vibrazione fosse non per w/l
+p2 muove lentamente rispetto a p1
+p1 make a "smorfia" when detecting the sound, and he is the looser
+p1 says "u are too good at this game", and it's loosing atm
+
+## C14
+
+non blind
+
+p1 e p2 laugh when the move is the same
+p2 says "Carlo i'm sorry" (she has won)
+p1 says "You are too strong"
+p1 says "non ce la posso fare oh"
+p1 says "oh i've understood, your looking at my hand"
+
+blind
+
+p1 can't easily find IR
+All draws at match 5
+p2 says: "Carlo smettila"
+both laugh
+tie again
+p1 happy to win a match
+p1 says "ahia"
+p2 says "carloohhhh"
+
+## C15
+
+test
+
+p2 says "quanto è scontato che perdo io"
+p2 is upset of the vibration on the wrist, and says "what is this thing, oh my god"
+
+blind
+p2 plays the move delayed, do to non vision
+p2 is super confused with IR, she's not able to use it properly
+p2 still stick her hands on the IR, seems that she thinks that she has to stick it in order to properly register the move
+
+non blind
+
+p1 and p2 say things, gazing each other while the move is the same
+p1 looks p2 hand before the move, and then shift her gaze on the face
+p1 e p2 laugh when the move is the same
+
+## C16
+
+not blind
+
+p2 has difficulties using the IR
+p1 says "idk how to do scissor properly"
+p2 looks at p1 hand
+p2 still has difficulties in doing the scissors move
+
+blind
+
+p2 still has difficulties using the IR
+p1 says "finally" after winning a round
