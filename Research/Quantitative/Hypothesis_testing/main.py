@@ -126,6 +126,7 @@ for ids in list_unique_ids:
 
 # plot an histogram of the differences
 differences = np.array(blind_percentages) - np.array(non_blind_percentages)
+print(differences)
 plt.hist(differences, bins=20)
 plt.title('Differences between the win rates')
 plt.xlabel('Difference')

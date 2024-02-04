@@ -14,8 +14,6 @@ Based on these results, it's reasonable to conclude that the assumption of norma
 
 ## Comparing the winning percentages
 
-Let's perform both a graphical (Q-Q plot) and statistical (Shapiro-Wilk test) analysis on the differences between your paired observations to assess normality. First, we'll calculate the differences and then proceed with the normality checks.
-
 The Shapiro-Wilk test for normality on the differences between the non-blind and blind mode winning percentages yields a statistic of approximately 0.984 and a p-value of approximately 0.914. This suggests that the differences between paired observations do not significantly deviate from a normal distribution, as the p-value is well above the common threshold of 0.05 used to denote statistical significance.
 
 Additionally, the Q-Q plot visually supports this finding. The data points closely follow the 45-degree line, indicating that the differences are approximately normally distributed.
