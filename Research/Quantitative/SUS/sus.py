@@ -20,9 +20,34 @@ import os
 import numpy as np
 import scipy.stats as st
 import matplotlib.pyplot as plt
+import pandas as pd
 from textwrap import wrap
 
 os.chdir('Research/Quantitative/SUS')
+raw_questionnaire = 'Questionnaire.csv'
+
+#Read the data from the questionnaire file
+df_anagrafica = []
+df_SUS = []
+with open(raw_questionnaire, mode='r') as csv_file:
+    df_questionnaire = pd.read_csv(csv_file)
+    print(df_questionnaire[['Name','Surname','Age',"Current educational level"]])
+    
+    plt.hist(df_questionnaire['Age'], bins=10, alpha=0.5, color='b', edgecolor='black')
+    plt.title('Age distribution')
+    plt.xlabel('Age')
+    plt.ylabel('Frequency')
+    plt.savefig("age_distribution.png", dpi=300, bbox_inches='tight')
+
+    # Create the SUS 
+    # take from column 12 to 19 
+    df_SUS = df_questionnaire.iloc[:, 9:19]
+    df_SUS.insert(0, 'participant', range(1, 1 + len(df_SUS)))
+    #substitute each column header with the question number
+    df_SUS.columns = ['participant', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10']
+    df_SUS.to_csv('sus-input-data.csv', sep='\t', index=False)
+    
+# SUS questions analysis    
 infile = 'sus-input-data.csv'
 outfile = 'sus-results.csv'
 
