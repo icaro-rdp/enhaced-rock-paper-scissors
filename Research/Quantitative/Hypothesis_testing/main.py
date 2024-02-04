@@ -64,7 +64,8 @@ games_df = games_df[(games_df['winner'] != 'Invalid move' ) & (games_df['winner'
 # Listing the unique IDs in the dataframe 
 list_unique_ids = games_df['id'].str.split('R', expand=True)[0].unique()
 
-# Plotting the win percentage for each mode just to visualize the data (not part of the hypothesis testing)
+# Plotting the win percentage for each mode just to visualize the data (not part of the hypothesis testing) -> Uncomment the code below to run it 
+
 # for id in list_unique_ids:
 #     game_df = games_df[games_df['id'].str.startswith(id)]
 
