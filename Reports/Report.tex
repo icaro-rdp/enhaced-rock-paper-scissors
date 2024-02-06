@@ -1,0 +1,124 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[myheadings]{fullpage}
+
+% Package for headers 
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% For figures and stuff
+\usepackage{graphicx, wrapfig, subcaption, setspace, booktabs}
+\usepackage[T1]{fontenc}
+
+% Change for different font sizes and families
+\usepackage[font=small, labelfont=bf]{caption}
+\usepackage{fourier}
+\usepackage[protrusion=true, expansion=true]{microtype}
+
+% Maths
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+% Bibliography
+\usepackage{biblatex} 
+\addbibresource{references.bib}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\onehalfspacing
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=2cm,bottom=1.5cm,left=2.5cm,right=2.5cm,marginparwidth=2cm]{geometry}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+% Header and footer information
+\setlength\headheight{15pt}
+\fancyhead[L]{MIS - 2023/2024} 
+\fancyhead[R]{I.Re Depaolini, M.Carraro, T.Ceccherini, I.Rocchi}
+\fancyfoot[R]{\thepage}
+\makeindex
+
+% This is a template for the essay. Do not change anything in this file except the title, author and date.
+\begin{document}
+
+\date{}
+
+% Do not change anything here except in \LARGE \textbf{This is the title of the essay} 
+% /hline before and after the title makes those horoziontal lines appear, you can change the appearance by changing the 2pt to different sizees
+\title{ \normalsize TRENTO UNIVERSITY
+		\\ [1.0cm]
+		% Change to your faculty if needed
+		\includegraphics[width=30mm]{img/unitn_logo.jpg}\\[.5cm]
+		Faculty of Cognitive Science and Computer Science\\
+		\textsc{Multisensory interactive system}\\[2.0cm]
+		\LARGE \textbf{Enhanced rock paper scissors game with a multisensory interactive system}\\[1.5cm]
+		\normalsize \today \vspace*{5\baselineskip}}
+
+
+		
+\date{}
+
+\author{
+  Icaro, Re Depaolini\\
+  \texttt{icaro.redepaolini@studenti.unitn.it}
+  \and
+  Marco, Carraro \\
+  \texttt{marco.carraro-1@studenti.unitn.it}
+  \and
+  Tommaso, Ceccherini\\
+  \texttt{tommaso.ceccherini@studenti.unitn.it}
+  \and
+  Ilaria, Rocchi\\
+  \texttt{ilaria.rocchi@studenti.unitn.it}
+}
+
+
+		 
+\maketitle
+
+% Uncomment the next line if you want a table of contents 
+% \tableofcontents
+
+\newpage
+
+
+% Uncomment the next line if you want keywords/index terms after the abstract. 
+%\textit{\textbf{Keywords}: lorem, ipsum, dolor}
+
+
+\section*{Abstract}
+
+
+\section*{Introduction}
+
+\section*{Related Work}
+
+\section*{Architecture and Design}
+\subsection*{Usage model}
+
+\subsection*{Implementation}
+
+\section*{Evaluation}
+
+\section*{Discussion and Conclusion}
+
+\section*{Group members contribution}
+
+\newpage
+\printbibliography
+\addcontentsline{toc}{section}{Bibliography}
+
+
+\end{document}
