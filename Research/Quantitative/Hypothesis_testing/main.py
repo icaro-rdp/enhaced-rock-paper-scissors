@@ -117,10 +117,10 @@ for ids in list_unique_ids:
     win_percentage_not_blind_p2 = game_df[game_df["mode"] == "not blind"]["winner"].value_counts(normalize=True).get('p2', 0)
 
     non_blind_percentages.append(win_percentage_not_blind_p1)
-    non_blind_percentages.append(win_percentage_not_blind_p2)
+    # non_blind_percentages.append(win_percentage_not_blind_p2)
 
     blind_percentages.append(win_percentage_blind_p1)
-    blind_percentages.append(win_percentage_blind_p2)
+    # blind_percentages.append(win_percentage_blind_p2)
 
 # Test the distribution of the differences between the win rates
 

@@ -26,9 +26,13 @@ Based on these results, it's reasonable to conclude that the assumption of norma
 
 Now that we've confirmed the normality of the data, we can proceed with the hypothesis test. We'll use a paired samples t-test to compare the winning percentages between the non-blind and blind modes.
 
-The paired samples t-test between the non-blind and blind mode winning percentages resulted in a t-statistic of approximately **-3.67e-17** and a p-value of **1.0**.
+The paired samples t-test between the non-blind and blind mode winning percentages resulted in a t-statistic : **t-statistic = -1.4700373650445964, p-value = 0.1622143698930308**.
 
-The t-statistic is very close to zero, and the p-value is 1, indicating that there is no statistically significant difference between the winning percentages of players in non-blind and blind modes. This suggests that, on average, the mode of the game (non-blind vs. blind) does not significantly affect the winning percentages of the players in this sample.
+The results of the paired samples t-test you provided are used to compare the difference between two groups of data (in this case, the winning percentages in non-blind and blind modes) to see if this difference is statistically significant. The paired samples t-test is commonly used when there are two measurements on the same group, subject, or entity, taken under different conditions (for example, before and after a treatment, or in two different experimental conditions such as non-blind and blind modes in this context).
+
+- **T-statistic**: The value of -1.4700373650445964 indicates the distance between the mean of the observed differences and the hypothesized mean of differences (often zero, if no difference is hypothesized) measured in terms of standard error. A negative value indicates that the mean of the observed differences is lower than the hypothesized mean. However, the direction (positive or negative) alone does not determine significance.
+
+- **P-value**: The value of 0.1622143698930308 represents the probability of obtaining a result at least as extreme as the one observed, assuming that the null hypothesis is true. The null hypothesis, in this case, presumably states that there is no significant difference between the two conditions being tested. A p-value greater than 0.05 (a common threshold for statistical significance) suggests that there is not enough evidence to reject the null hypothesis. In other words, there is no statistically significant difference between the winning percentages in non-blind and blind modes.
 
 ## Conclusion
 
