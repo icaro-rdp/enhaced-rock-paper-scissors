@@ -30,17 +30,14 @@ raw_questionnaire = 'Questionnaire.csv'
 df_anagrafica = []
 df_SUS = []
 with open(raw_questionnaire, mode='r') as csv_file:
-    df_questionnaire = pd.read_csv(csv_file)
-    print(df_questionnaire[['Name','Surname','Age',"Current educational level"]])
-    
+    df_questionnaire = pd.read_csv(csv_file)    
     plt.hist(df_questionnaire['Age'], bins=10, alpha=0.5, color='b', edgecolor='black')
     plt.title('Age distribution')
     plt.xlabel('Age')
     plt.ylabel('Frequency')
     plt.savefig("age_distribution.png", dpi=300, bbox_inches='tight')
 
-    # Create the SUS 
-    # take from column 12 to 19 
+    #Extract the SUS questions
     df_SUS = df_questionnaire.iloc[:, 9:19]
     df_SUS.insert(0, 'participant', range(1, 1 + len(df_SUS)))
     #substitute each column header with the question number
