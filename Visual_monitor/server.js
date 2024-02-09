@@ -13,7 +13,11 @@ const moves = [undefined, undefined];
 // variables for CSV file writing
 let counterMessages = 0;
 
-// Server for PD communication (PD sends messages to this server)
+/* Server for PD communication (PD sends messages to this server)
+  Event listener for the 'message' event, that is triggered when a new message is received from the PD
+  It also writes the moves on a CSV file, as a logging system
+/*/
+
 UDP_server.on("message", (msg) => {
   handleMessages(moves, msg);
 
@@ -40,6 +44,10 @@ UDP_server.on("message", (msg) => {
   }
 });
 
+/*
+  Event listener for the 'listening' event, that is triggered when the server has been bound after calling server.bind() and is ready to receive message.
+  It also creates a CSV file if it doesn't exist
+/*/
 UDP_server.on("listening", () => {
   const address = UDP_server.address();
   console.log(`UDP_server running on ${address.address}:${address.port}`);

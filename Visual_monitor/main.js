@@ -20,25 +20,29 @@ handsMove = new Proxy(handsMove, {
   },
 });
 
-// setInterval(async () => {
-//   try {
-//     const response = await fetch("http://localhost:3000/last-moves");
-//     const data = await response.json();
-//     console.log(data);
-//     handsMove = data?.move ?? [3, 3];
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }, 1000);
+/*
+ * Fetch the last move from the server every second to get the latest move from the server
+ * and update the handsMove object
+ */
+setInterval(async () => {
+  try {
+    const response = await fetch("http://localhost:3000/last-moves");
+    const data = await response.json();
+    handsMove.move = data?.move ?? [3, 3];
+  } catch (err) {
+    console.log(err);
+  }
+}, 1000);
 
-let counter = 0;
-setInterval(() => {
-  if (counter === 2) {
-    counter = 0;
-  } else counter++;
-  handsMove.move = [counter, 3];
-  setBones(handsMove);
-}, 2000);
+// TODO: Remove this code when the server is ready
+// let counter = 0;
+// setInterval(() => {
+//   if (counter === 2) {
+//     counter = 0;
+//   } else counter++;
+//   handsMove.move = [counter, 3];
+//   setBones(handsMove);
+// }, 2000);
 
 // Pane
 const pane = new Pane({
