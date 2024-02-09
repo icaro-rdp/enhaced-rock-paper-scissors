@@ -6,17 +6,43 @@ import GSAP from "gsap";
 import { Pane } from "tweakpane";
 
 // Function to get the last move from the server
-let handsMove =[3,3] 
+
+// Initialize your object
+let handsMove = {
+  move: [3, 3],
+};
+
+// Create a Proxy for your object
+handsMove = new Proxy(handsMove, {
+  set: (target, property, value) => {
+    target[property] = value;
+    return true;
+  },
+});
+
+/*
+ * Fetch the last move from the server every second to get the latest move from the server
+ * and update the handsMove object
+ */
 setInterval(async () => {
   try {
     const response = await fetch("http://localhost:3000/last-moves");
     const data = await response.json();
-    console.log(data);
-    handsMove = data?.move ?? [3, 3];
+    handsMove.move = data?.move ?? [3, 3];
   } catch (err) {
     console.log(err);
   }
 }, 1000);
+
+// TODO: Remove this code when the server is ready
+// let counter = 0;
+// setInterval(() => {
+//   if (counter === 2) {
+//     counter = 0;
+//   } else counter++;
+//   handsMove.move = [counter, 3];
+//   setBones(handsMove);
+// }, 2000);
 
 // Pane
 const pane = new Pane({
@@ -51,17 +77,11 @@ const DEFAULTS = {
   pinkyz: -0.52,
 };
 
-// Buttons
-const rock = document.getElementById("rock");
-const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissors");
-
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
-const scene2 = new THREE.Scene();
 const bgColor = new THREE.Color(DEFAULTS.bg);
 scene.background = bgColor;
 
@@ -82,10 +102,10 @@ tab.pages[1]
 const gltfLoader = new GLTFLoader();
 
 gltfLoader.load("hand.glb", (gltf) => {
-  scene.add(gltf.scene.children[0]);
-
+  const hand = gltf.scene.children[0];
+  scene.add(hand);
   setMaterials();
-  setBones();
+  setBones(handsMove);
 });
 
 // Materials
@@ -153,7 +173,7 @@ const setMaterials = () => {
  * and adds the inputs to the pane to control them
  *
  */
-const setBones = () => {
+const setBones = (handsMove, name) => {
   const wrist = scene.getObjectByName("Hand").skeleton.bones[0];
   const wrist1 = scene.getObjectByName("Hand").skeleton.bones[1];
   const wrist2 = scene.getObjectByName("Hand").skeleton.bones[2];
@@ -319,8 +339,7 @@ const setBones = () => {
   const ringRotation = [ring1.rotation, ring2.rotation, ring3.rotation];
   const pinkyRotation = [pinky1.rotation, pinky2.rotation, pinky3.rotation];
 
-  rock.addEventListener("click", () => {
-    console.log(handsMove);
+  if (handsMove.move[0] === 0 || handsMove.move[0] === 3) {
     const tlRaisedHand = GSAP.timeline();
 
     tlRaisedHand
@@ -356,10 +375,7 @@ const setBones = () => {
         pane.refresh();
       })
       .play();
-  });
-
-  paper.addEventListener("click", () => {
-    // reset the Default values
+  } else if (handsMove.move[0] === 1) {
     const tlRaisedHand = GSAP.timeline();
 
     tlRaisedHand
@@ -394,10 +410,7 @@ const setBones = () => {
         pane.refresh();
       })
       .play();
-  });
-
-  scissors.addEventListener("click", () => {
-    // reset the Default values
+  } else if (handsMove.move[0] === 2) {
     const tlRaisedHand = GSAP.timeline();
 
     tlRaisedHand
@@ -432,7 +445,7 @@ const setBones = () => {
         pane.refresh();
       })
       .play();
-  });
+  }
 };
 
 /**
@@ -477,7 +490,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.set(0, 0, 5);
+camera.position.set(-2, 2, 3);
 scene.add(camera);
 
 // Controls
