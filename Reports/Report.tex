@@ -1,7 +1,8 @@
-\documentclass[12pt]{report}
+\documentclass[11pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[myheadings]{fullpage}
+\usepackage{blindtext}
 
 % Package for headers 
 \usepackage{fancyhdr}
@@ -101,10 +102,58 @@
 \section*{Abstract}
 
 \section*{Introduction}
+Our project concerns the creation of a multisensory interaction system based on the classic game of "rock-paper-scissors," which is contextualized within an environment where the user receives feedback and stimulation through different sensory channels. The aim of the system is to observe whether vision plays a significant role in the ratio of victories of a player in the game rock-paper-scissors. In order to achieve the aforementioned research goal, each pair of players perform the game in both of its versions: blindfolded and not-blindfolded. 
+The created system provides the users discrete interactions (e.g. haptic feedback as a sensory response to the game result) as well as continuous interactions (e.g. infrared distance sensors used to set the game to a “ready" state).
+The area of research involved in this project has potential applications in different fields, such as entertainment, rehabilitation, accessibility, and sociality.
+Our approach is based on some of the theoretical perspectives on multisensory perception and interactive systems introduced in the course.
+For example, the concept of multisensory perception became apparent: we were able to observe how the senses do not operate in isolation, but combine with each other to create a unified perception of reality.
+Through the feedback obtained from the users involved, moreover, it was interesting to recognize how their perception of the game and their activities performed varied within the two different modalities, also provoking different reactions and influencing their moods and level of involvement.
+In this report, we will describe our project in detail, illustrating the design, technical implementation and evaluation of our system.
 
 \section*{Related Work}
 
+% TODO: to be completed
+
+From the literature we have found few resources regarding the role of vision in games such as Rock paper scissors, however an interesting study has examined the impact of the mirror neuron system on player actions in Rock-Paper-Scissors, focusing on imitation's role in predicting game outcomes and the influence of autism spectrum traits on imitation abilities. It concluded that neither winning nor losing patterns were significantly affected by imitation, and there was no correlation found between participants' autism spectrum scores and their imitation levels, suggesting a minimal effect of the mirror neuron system in this competitive setting [4].
+One notable project is an auditory card game system designed to be accessible to visually impaired players by presenting card contents with auditory stimuli. This system aims to allow for equitable play among visually impaired and sighted players, focusing on the auditory experience as a primary interaction mode. The effectiveness of this system was validated through experiments, highlighting the potential for designing accessible board games that do not rely on visual information [3] 
+
 \section*{Architecture and Design}
+Our system is composed of several parts and components.
+All of these components and their communication with other parts are explained in detail in their own section below ** add the section **.
+The schematic architecture of our interactive system involves multiple components and two players. It's designed to create an immersive experience, for a game or simulation, utilizing various types of feedback and sensors. Here's a breakdown of the components and the communication between them:
+
+\begin{description}
+  \item [Node Server:] This is the central processing unit that seems to handle network communication (UDP), runs on Express.js (a web application framework for Node.js), and includes functionalities such as CSV logging. It's likely the hub that processes data from various inputs and outputs commands to different parts of the system.
+  \item [Visual Monitor:] A display screen shows the visual output, which could be the interface for the game or simulation. It's connected to the Node Server, receiving data to display the last move or action taken by the players.
+  \item [PureData Patches:] PureData (Pd) is a visual programming language for creating interactive computer music and multimedia works. These patches are made to produce audio cues for the game and create audio effects that are triggered by certain actions in the system, for example, the sound produced by the interaction with IR sensors.
+  \item [Sound Card:] It's an audio interface that processes the sound output from the PureData patches and sends the audio to the speakers.
+  \item [Sound Speakers:] Represented by two JBL speakers, these output the audio for the players to hear, adding to the immersive experience.
+  \item [Teensy Board:] A microcontroller board (similar to Arduino) programmed with Arduino code. It processes input from gloves and IR sensors and communicates with PD patches, it’s the “brain” of our system.
+  \item [Gloves with Flex and Haptic Sensors:] These are worn by the players (Player 1 and Player 2) and are used to detect the movements and gestures of their hands. The flex sensors detect bending motions, while haptic sensors provide feedback to the user, through vibrations.
+  \item [IR Sensors:] Infrared sensors are used to start a new round, the player has to place one hand on them and an audio feedback guide him by saying “player one/two ready”. These IR sensors are very useful in the blind version of the game, since they help the player in a navigation and detection process by tracking the hand position over the sensor.
+  \item [Player 1 and Player 2:] Two participants in the system, each equipped with gloves that have sensors. They interact with the system and with each other within the context of the game or simulation.
+\end{description}
+
+\subsection*{Communication between components}
+The communication between the components is essential for the system to work as intended. Here's a brief overview of how the components interact with each other:
+\begin{itemize}
+  \item The players make movements with their sensor-equipped gloves.
+  \item The information about the “readiness” of the player are sent by PD to arduino
+  \item The players play their rounds
+  \item The Teensy Board processes these movements and sends the data to PD.
+  \item Simultaneously there are trigger audio responses via PureData patches, which are then processed by the Soundcard and played through the Sound Speakers.
+  \item PD sends the detected moves to the Node Server using an UDP connection and the [netsend] object in the main patch.
+  \item The Node server receives the moves and saves all the rounds in a CSV file.
+  \item The Node Server could also send commands to the Visual Monitor to update the display based on the players' actions exposing an Express endpoint called ‘/last-move’.
+\end{itemize}
+All these components work together to create an interactive and immersive experience, with visual, auditory, and tactile feedback loops. 
+
+Our system is mainly designed to be placed on a stationary like a table or even on a couch , and not in a too noisy place, since the speakers provide cues about the game and the external noise could lead to a misunderstanding, increasing ambiguity among different moves and sounds.
+We have developed this system with a focus on accessibility problems, trying to think how such a system could be used by vision impaired people without a big effort.
+For example the increasing and decreasing sound that comes from the IR sensors detection, is designed to help the navigation and the placement of the users hands.
+Moreover the integration of multiple feedback, using both audio cues and haptic ones, could also be useful for people with multiple disabilities [2].
+The main idea is to have a system that can guide the users in their games, and provide them the results and feedback of their moves in a comprehensive way.
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{img/design_system.png}
