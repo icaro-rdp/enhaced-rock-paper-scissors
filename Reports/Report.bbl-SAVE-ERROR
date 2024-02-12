@@ -1,0 +1,297 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{3}{article}{}
+      \name{author}{1}{}{%
+        {{hash=bac46ae239644fb1f3f77d08d2b390b3}{%
+           family={Cho},
+           familyi={C\bibinitperiod},
+           given={J.-D.},
+           giveni={J\bibinithyphendelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{bac46ae239644fb1f3f77d08d2b390b3}
+      \strng{fullhash}{bac46ae239644fb1f3f77d08d2b390b3}
+      \strng{bibnamehash}{bac46ae239644fb1f3f77d08d2b390b3}
+      \strng{authorbibnamehash}{bac46ae239644fb1f3f77d08d2b390b3}
+      \strng{authornamehash}{bac46ae239644fb1f3f77d08d2b390b3}
+      \strng{authorfullhash}{bac46ae239644fb1f3f77d08d2b390b3}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronics}
+      \field{title}{Multi-Sensory Interaction for Blind and Visually Impaired People}
+      \field{volume}{10}
+      \field{year}{2021}
+      \field{pages}{3170}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/electronics10243170
+      \endverb
+    \endentry
+    \entry{4}{article}{}
+      \name{author}{1}{}{%
+        {{hash=a1f0461a75a6b0ebaec5ba5433f9f735}{%
+           family={Drew},
+           familyi={D\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{a1f0461a75a6b0ebaec5ba5433f9f735}
+      \strng{fullhash}{a1f0461a75a6b0ebaec5ba5433f9f735}
+      \strng{bibnamehash}{a1f0461a75a6b0ebaec5ba5433f9f735}
+      \strng{authorbibnamehash}{a1f0461a75a6b0ebaec5ba5433f9f735}
+      \strng{authornamehash}{a1f0461a75a6b0ebaec5ba5433f9f735}
+      \strng{authorfullhash}{a1f0461a75a6b0ebaec5ba5433f9f735}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Plymouth Student Scientist}
+      \field{number}{1}
+      \field{title}{The study of human interaction when playing rock-paper-scissors}
+      \field{volume}{5}
+      \field{year}{2012}
+      \field{pages}{119\bibrangedash 139}
+      \range{pages}{21}
+      \verb{urlraw}
+      \verb http://hdl.handle.net/10026.1/13969
+      \endverb
+      \verb{url}
+      \verb http://hdl.handle.net/10026.1/13969
+      \endverb
+    \endentry
+    \entry{2}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bb8abcb6cf366cd16328f41512837526}{%
+           family={Ernst},
+           familyi={E\bibinitperiod},
+           given={Marc\bibnamedelima O},
+           giveni={M\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=b5bfea27864db1c0ed528a3bf391f860}{%
+           family={Bülthoff},
+           familyi={B\bibinitperiod},
+           given={Heinrich\bibnamedelima H},
+           giveni={H\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{af0d69a570d722c4c3e4263e929c9b4b}
+      \strng{fullhash}{af0d69a570d722c4c3e4263e929c9b4b}
+      \strng{bibnamehash}{af0d69a570d722c4c3e4263e929c9b4b}
+      \strng{authorbibnamehash}{af0d69a570d722c4c3e4263e929c9b4b}
+      \strng{authornamehash}{af0d69a570d722c4c3e4263e929c9b4b}
+      \strng{authorfullhash}{af0d69a570d722c4c3e4263e929c9b4b}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Trends in Cognitive Sciences}
+      \field{month}{4}
+      \field{number}{4}
+      \field{title}{Merging the senses into a robust percept}
+      \field{volume}{8}
+      \field{year}{2004}
+      \field{pages}{162\bibrangedash 169}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1016/j.tics.2004.02.002
+      \endverb
+    \endentry
+    \entry{6}{article}{}
+      \name{author}{2}{}{%
+        {{hash=21a83c24355bc3abfa58b2621d0ef119}{%
+           family={Gardner},
+           familyi={G\bibinitperiod},
+           given={Esther},
+           giveni={E\bibinitperiod}}}%
+        {{hash=68d13e965ed219fc3bd3fdcf9841652b}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{5e1422f42a75ee4fb8094e9d27c4a132}
+      \strng{fullhash}{5e1422f42a75ee4fb8094e9d27c4a132}
+      \strng{bibnamehash}{5e1422f42a75ee4fb8094e9d27c4a132}
+      \strng{authorbibnamehash}{5e1422f42a75ee4fb8094e9d27c4a132}
+      \strng{authornamehash}{5e1422f42a75ee4fb8094e9d27c4a132}
+      \strng{authorfullhash}{5e1422f42a75ee4fb8094e9d27c4a132}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Coding of Sensory Information}
+      \field{title}{Coding of Sensory Information}
+    \endentry
+    \entry{5}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=329c9168836968b704e41296582a4163}{%
+           family={Gonçalves},
+           familyi={G\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d476555a26a7486d9c778fc57d17d7f1}{%
+           family={Piçarra},
+           familyi={P\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod}}}%
+        {{hash=77217c7c7a009ec0b82d34b2604086f5}{%
+           family={Pais},
+           familyi={P\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=25479b78607f5968c4d6c17846c096bf}{%
+           family={Guerreiro},
+           familyi={G\bibinitperiod},
+           given={João},
+           giveni={J\bibinitperiod}}}%
+        {{hash=29247f3e9e36a0a5a2f52ddc501f1d6c}{%
+           family={Rodrigues},
+           familyi={R\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{organization}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{bf436f8bc922d341de1a92824d57135b}
+      \strng{fullhash}{7d515cad366b1b9a12005bfac97ea6ec}
+      \strng{bibnamehash}{bf436f8bc922d341de1a92824d57135b}
+      \strng{authorbibnamehash}{bf436f8bc922d341de1a92824d57135b}
+      \strng{authornamehash}{bf436f8bc922d341de1a92824d57135b}
+      \strng{authorfullhash}{7d515cad366b1b9a12005bfac97ea6ec}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems}
+      \field{title}{"My Zelda Cane": Strategies Used by Blind Players to Play Visual-Centric Digital Games}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 15}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1145/3544548.3580702
+      \endverb
+    \endentry
+    \entry{1}{article}{}
+      \name{author}{4}{}{%
+        {{hash=60e909e03ed842f12567d5b7a844e0a9}{%
+           family={Litovsky},
+           familyi={L\bibinitperiod},
+           given={Ruth\bibnamedelima Y},
+           giveni={R\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=25726b3b8a90b85629ac9c76cd17c22a}{%
+           family={Colburn},
+           familyi={C\bibinitperiod},
+           given={H.\bibnamedelimi Steven},
+           giveni={H\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=a582007b19006e5ab6c7ddedef5f7487}{%
+           family={Yost},
+           familyi={Y\bibinitperiod},
+           given={William\bibnamedelima A},
+           giveni={W\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=e132039f0fe73097969065f07d56d5cf}{%
+           family={Guzman},
+           familyi={G\bibinitperiod},
+           given={Sandra\bibnamedelima J},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Acoustical Society of America}%
+      }
+      \strng{namehash}{da5f471062e0b9a10908f18624fbcd4a}
+      \strng{fullhash}{445ec61379cd723cb8ab2c4b02ca1fb6}
+      \strng{bibnamehash}{da5f471062e0b9a10908f18624fbcd4a}
+      \strng{authorbibnamehash}{da5f471062e0b9a10908f18624fbcd4a}
+      \strng{authornamehash}{da5f471062e0b9a10908f18624fbcd4a}
+      \strng{authorfullhash}{445ec61379cd723cb8ab2c4b02ca1fb6}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the Acoustical Society of America}
+      \field{month}{10}
+      \field{number}{4}
+      \field{title}{The precedence effect}
+      \field{volume}{106}
+      \field{year}{1999}
+      \field{pages}{1633\bibrangedash 1654}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1121/1.427914
+      \endverb
+    \endentry
+    \entry{7}{article}{}
+      \name{author}{4}{}{%
+        {{hash=3051e23ce7a6283d027aad47f78cc536}{%
+           family={Yeganeh},
+           familyi={Y\bibinitperiod},
+           given={Nashmin},
+           giveni={N\bibinitperiod}}}%
+        {{hash=493ab14332dce02ba2ef6f900a31103f}{%
+           family={Makarov},
+           familyi={M\bibinitperiod},
+           given={Ivan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=7199e3a9f216c59a5316c586e01ce692}{%
+           family={Unnthorsson},
+           familyi={U\bibinitperiod},
+           given={Runar},
+           giveni={R\bibinitperiod}}}%
+        {{hash=8817df57ebd1852f7bb1422617d018bd}{%
+           family={Kristjánsson},
+           familyi={K\bibinitperiod},
+           given={Árni},
+           giveni={Á\bibinitperiod}}}%
+      }
+      \strng{namehash}{bb23d2b654bee6723ec85538099ba6d9}
+      \strng{fullhash}{137ef799e858753410a78e15a53ec0ee}
+      \strng{bibnamehash}{bb23d2b654bee6723ec85538099ba6d9}
+      \strng{authorbibnamehash}{bb23d2b654bee6723ec85538099ba6d9}
+      \strng{authornamehash}{bb23d2b654bee6723ec85538099ba6d9}
+      \strng{authorfullhash}{137ef799e858753410a78e15a53ec0ee}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Actuators}
+      \field{month}{05}
+      \field{title}{Effects of Stimulus Frequency and Location on Vibrotactile Discrimination Performance Using Voice Coil Actuators on the Forearm}
+      \field{volume}{12}
+      \field{year}{2023}
+      \field{pages}{224}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/act12060224
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
